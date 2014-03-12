@@ -13,7 +13,9 @@ and open the template in the editor.
         <?php
 
 	//hello
-       
+       function hello(){
+	echo " hiiii";
+	}
         ?>
     </body>
 </html>
