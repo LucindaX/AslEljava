@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: phpproject
 -- ------------------------------------------------------
--- Server version	5.5.35-0ubuntu0.13.10.2
+-- Server version	5.5.35-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,14 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `phpproject`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `phpproject` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `phpproject`;
 
 --
 -- Table structure for table `Admin`
@@ -37,7 +45,7 @@ CREATE TABLE `Admin` (
 LOCK TABLES `Admin` WRITE;
 /*!40000 ALTER TABLE `Admin` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Admin` ENABLE KEYS */;
-UNLOCK TABLES; 
+UNLOCK TABLES;
 
 --
 -- Table structure for table `categories`
@@ -149,7 +157,7 @@ CREATE TABLE `products` (
   `p_id` int(11) NOT NULL AUTO_INCREMENT,
   `p_name` varchar(50) NOT NULL,
   `p_desc` text,
-  `p_price` int(11) NOT NULL,
+  `p_price` float NOT NULL,
   `p_stock` int(11) NOT NULL,
   `p_img` text,
   `p_QR` text,
@@ -180,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-12 15:36:13
+-- Dump completed on 2014-03-12 17:27:40
