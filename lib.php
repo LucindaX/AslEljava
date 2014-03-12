@@ -9,6 +9,7 @@
  * 
  * ----------> Name Convention <-----------
  */
+
     function createConnection($dbUser,$dbPass) {
         $dbHost = "localhost";
         $dbName = "phpproject";
@@ -26,5 +27,6 @@
     function yourFunction() {
         
     }
-
+    
+   
 ?>
