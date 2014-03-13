@@ -1,1 +1,3 @@
 create table hit_locations (country varchar(50) not null ,state varchar(50),town varchar(50),hits int not null default 1 ,primary key(country,state,town));
+
+alter table products add p_hits int not null default 0;
