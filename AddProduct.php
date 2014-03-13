@@ -1,17 +1,26 @@
+<!--
+----------------------- Under Construction ----------------
+-->
+
+<?php
+ include 'lib.php';
+ 
+ userAuthentication();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
 	<title>PHP Project</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<link rel="shortcut icon" href="css/images/favicon.ico" />
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/prettyCheckboxes.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/redButton.css" type="text/css" media="all" />
-	<script src="js/jquery-1.7.min.js" type="text/javascript"></script>
-	<script src="js/jquery.jcarousel.js" type="text/javascript"></script>
-	<script src="js/prettyCheckboxes.js" type="text/javascript"></script>
-	<script src="js/DD_belatedPNG-min.js" type="text/javascript"></script>
-	<script src="js/functions.js" type="text/javascript"></script>
+        <link rel="shortcut icon" href="resources/css/images/favicon.ico" />
+	<link rel="stylesheet" href="resources/css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="resources/css/prettyCheckboxes.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="resources/css/redButton.css" type="text/css" media="all" />
+	<script src="resources/js/jquery-1.7.min.js" type="text/javascript"></script>
+	<script src="resources/js/jquery.jcarousel.js" type="text/javascript"></script>
+	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
+	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
+	<script src="resources/js/functions.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="shell">
@@ -87,151 +96,12 @@
 			<!-- Latest Products -->
 			<div class="products">
 				<h2>Products :</h2>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case1.jpg" alt="Black and red stylish computer case" /></a>
-						<input class="red" type="button" value="Add"/>	
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case2.jpg" alt="Beautiful white case with flower motives" /></a>
-						<img class="sale-label" src="css/images/sale-label.png" alt="Sale!" />	
-						<input class="red" type="button" value="Add"/>							
-						<p>Case Model</p>													
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>	
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case3.jpg" alt="Black and white gamers computer case" /></a>
-						<img class="sale-label" src="css/images/sale-label.png" alt="Sale!" />	
-						<input class="red" type="button" value="Add"/>		
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case4.jpg" alt="Transformers computer case" /></a>
-						<input class="red" type="button" value="Add"/>	
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case1.jpg" alt="Black and red stylish computer case" /></a>
-						<input class="red" type="button" value="Add"/>		
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case2.jpg" alt="Beautoful white case with flower motives" /></a>
-						<input class="red" type="button" value="Add"/>		
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case3.jpg" alt="Black and white gamers computer case" /></a>
-						<input class="red" type="button" value="Add"/>		
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case4.jpg" alt="Transformers computer case" /></a>
-						<input class="red" type="button" value="Add"/>		
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div><div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case1.jpg" alt="Black and red stylish computer case" /></a>
-						<input class="red" type="button" value="Add"/>		
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case2.jpg" alt="Beautoful white case with flower motives" /></a>
-						<input class="red" type="button" value="Add"/>		
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case3.jpg" alt="Black and white gamers computer case" /></a>
-						<input class="red" type="button" value="Add"/>		
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-						<a title="Details" href="#"><img src="css/images/case4.jpg" alt="Transformers computer case" /></a>
-						<input class="red" type="button" value="Add"/>		
-						<p>Case Model</p>							
-					</div>
-					<p>Product 20</p>
-					<div class="price-label">
-						<strike>$117.50</strike>
-						<p class="price">£96.<sup>35</sup></p>
-					</div>
-				</div>
+                                
+				<?php
+                                  $conn = createConnection("root", "54889");
+                                  printAllProducts($conn)
+                                ?>
+                                
 				<div class="cl"></div>
 			</div>
 			<!-- END Latest Products -->

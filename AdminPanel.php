@@ -1,17 +1,26 @@
+<!--
+   ----------------------- Under Construction ----------------
+-->
+
+<?php
+  include 'lib.php';
+  
+  userAuthentication();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
 	<title>PHP Project</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<link rel="shortcut icon" href="css/images/favicon.ico" />
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/prettyCheckboxes.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/redButton.css" type="text/css" media="all" />
-	<script src="js/jquery-1.7.min.js" type="text/javascript"></script>
-	<script src="js/jquery.jcarousel.js" type="text/javascript"></script>
-	<script src="js/prettyCheckboxes.js" type="text/javascript"></script>
-	<script src="js/DD_belatedPNG-min.js" type="text/javascript"></script>
-	<script src="js/functions.js" type="text/javascript"></script>
+	<link rel="shortcut icon" href="resources/css/images/favicon.ico" />
+	<link rel="stylesheet" href="resources/css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="resources/css/prettyCheckboxes.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="resources/css/redButton.css" type="text/css" media="all" />
+	<script src="resources/js/jquery-1.7.min.js" type="text/javascript"></script>
+	<script src="resources/js/jquery.jcarousel.js" type="text/javascript"></script>
+	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
+	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
+	<script src="resources/js/functions.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="shell">
@@ -89,28 +98,28 @@
 				<h2>Admin Panel :</h2>
 				<div class="product-holder">
 					<div class="product">
-						<a title="Details" href="#"><img src="css/images/startMagazine.png" alt="Black and red stylish computer case" /></a>
+						<a title="Details" href="#"><img src="resources/css/images/startMagazine.png" alt="Black and red stylish computer case" /></a>
 						<p>Start Magazine</p>							
 					</div>
 				</div>
 				<div class="product-holder">
 					<div class="product">
-						<a title="Details" href="#"><img src="css/images/newProduct.png.png" alt="Beautiful white case with flower motives" /></a>
-						<img class="sale-label" src="css/images/sale-label.png" alt="Sale!" />			
+						<a title="Details" href="#"><img src="resources/css/images/newProduct.png.png" alt="Beautiful white case with flower motives" /></a>
+						<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />			
 						<p>New Product</p>													
 					</div>
 				</div>
 				<div class="product-holder">
 					<div class="product">
-						<a title="Details" href="#"><img src="css/images/viewProducts.png" alt="Beautiful white case with flower motives" /></a>
-						<img class="sale-label" src="css/images/sale-label.png" alt="Sale!" />			
+						<a title="Details" href="#"><img src="resources/css/images/viewProducts.png" alt="Beautiful white case with flower motives" /></a>
+						<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />			
 						<p>View Products<</p>													
 					</div>
 				</div>
 				<div class="product-holder">
 					<div class="product">
-						<a title="Details" href="#"><img src="css/images/viewProducts.png" alt="Beautiful white case with flower motives" /></a>
-						<img class="sale-label" src="css/images/sale-label.png" alt="Sale!" />			
+						<a title="Details" href="#"><img src="resources/css/images/viewProducts.png" alt="Beautiful white case with flower motives" /></a>
+						<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />			
 						<p>Search Products</p>													
 					</div>
 				</div>
