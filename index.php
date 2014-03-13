@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <?php
 
-	//hello
+	hello();
        function hello(){
 	echo " hiiii";
 	}
