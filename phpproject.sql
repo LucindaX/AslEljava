@@ -37,7 +37,7 @@ CREATE TABLE `Admin` (
 LOCK TABLES `Admin` WRITE;
 /*!40000 ALTER TABLE `Admin` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Admin` ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK TABLES; 
 
 --
 -- Table structure for table `categories`
