@@ -4,6 +4,7 @@ AslEljava
 php-project
 
 
+
 library phpqrcode:
 include the path of "qrlib.php" file from it in the php file
 if put in AslEljava, the path is include('phpqrcode/qrlib.php');
@@ -23,3 +24,12 @@ database_update.txt
 
 i added a table called hit_locations to track that info and store only unique locations each time with their hit counts .
 i also added a field called p_hits that keeps track how many times a product has been bought . please feel free to delete the description i just wrote after reading it if u find no need for it after that .
+
+
+
+
+Omar is talking :D 
+
+" Great work ya sa3ed , i have added AddProduct.php file that i will choose  which products i wil pick it to our magazine , we can add and remove it from the top header and we can drag and drop ( Idea has Picked from sa3ed pervious project :D ) , then we enter title and edition for the magazine, and then it showed as pdf " 
+
+" but the is a error when exporting pdf , just one item retrieved :/ , we can review it later inshaALlah :) " 
