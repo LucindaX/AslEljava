@@ -11,11 +11,17 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        
+        include 'lib.php';
+        
+        $conn = createConnection("dbUser here ","dbPass Here");
+        $query = " Your Query Here " ;
+        
+        mysqli_query($conn, $query);
+        
+        // don't forget to close connection :) 
+        mysqli_close($conn);
 
-	hello();
-       function hello(){
-	echo " hiiii";
-	}
         ?>
     </body>
 </html>
