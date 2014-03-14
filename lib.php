@@ -206,7 +206,7 @@ function publish($id)
 	));
 	$pdf->setPageOptions(array(
 		'disable-smart-shrinking',
-		'user-style-sheet' => '/var/www/style.css',
+		'user-style-sheet' => 'style.css',
 		'zoom' => 0.5
 	));
 	$sql = "select * from products where p_id in (select prod_id from product_magazine where magzn_id = " . $id . ")";
@@ -214,7 +214,7 @@ function publish($id)
 	$result = mysqli_query($con, $sql);
 	if ($result)
 	{
-		$magazine.= "<html><head><link rel='stylesheet' type='text/css' href='/var/www/style.css'></head><body>";
+		$magazine.= "<html><head><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
 		$prod_count = 0;
 		while ($row = mysqli_fetch_array($result))
 		{
@@ -222,7 +222,7 @@ function publish($id)
 			{
 				$magazine.= "</body></html>";
 				$pdf->addPage($magazine);
-				$magazine = "<html><head><link rel='stylesheet' type='text/css' href='/var/www/style.css'></head><body>";
+				$magazine = "<html><head><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
 				$prod_count = 1;
 			}
 		
