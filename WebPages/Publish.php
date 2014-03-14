@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
   include 'lib.php';
   
   $items = $_POST['data'];
@@ -6,6 +6,8 @@
   $edition = $_POST['edition'];
   
   $conn = createConnection();
-  addNewMagazine($conn,$items,$title,$edition);
+  $magId = addNewMagazine($conn,$items,$title,$edition);
   
   mysqli_close($conn);
+  
+  header('Location: AddProduct.php?page=3&id='.$magId);

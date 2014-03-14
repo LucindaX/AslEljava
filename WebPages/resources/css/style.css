@@ -68,7 +68,7 @@ textarea { overflow: auto; }
 #search a.advanced-search:hover { text-decoration: none; }
 
 #logo { display: inline; float: left; padding-top: 22px; width: 258px; font-size: 0; line-height: 0; }
-#logo a { display: block; width: 258px; height: 56px; text-indent: -4000px; background: url(images/logo.png) no-repeat 0 0; }
+#logo a { display: block; width: 258px; height: 90px; text-indent: -4000px; background: url(images/logo.png) no-repeat 0 0; }
 
 #navigation { position: relative; z-index: 20; padding-left: 6px; height: 50px; background: url(images/navigation.png) no-repeat 0 0; }
 #navigation ul li { position: relative; list-style: none; display: inline; float: left; line-height: 48px; text-transform: uppercase; }
@@ -192,11 +192,12 @@ a.buy-now:hover { text-decoration: none; }
 .newsletter .submit-button { display: inline; float: left; width: 116px; margin-top: 28px; height: 33px; border: 0; background: url(images/submit-button.png) no-repeat 0 0; }
 .newsletter .submit-button { font-family: 'Museo900', serif; font-size: 15px; color: #fff; cursor: pointer; } 
 
-.itemsHolder { background-color: lightgrey; margin-left: 72px; border-radius: 1em; text-align: center; display: inline-block; padding-right: 10px; padding-bottom: 10px;}
+.itemsHolder { background-color: lightgrey; margin-left: 72px; border-radius: 1em; text-align: center; padding-right: 10px; padding-bottom: 10px; display: none; }
 .itemsHolder div { background-color: darkgrey; height: 40px; margin: auto; border-radius: 8px; position: relative; margin-left: 10px; margin-top: 7px;display : none;text-align: center;vertical-align: middle;line-height: 35px;font-size: 22px; padding-left: 8px; padding-right: 5px; }
 .itemsHolder input { float: right; margin-right: 4px; background-color: lightgrey; margin-top: 8px; border-style: solid; border-color: transparent; padding: 2px; margin-left: 10px; }
 
 .magazineTitles { margin-left: 300px;}
 .magazineTitles font {font-size: 14px}
 .magazineTitles input { width: 360px; height: 34px; border-style: solid; border-color: lightgrey; border-width: 1px;}
-.magazineTitles h1 { border-left-color: darkgrey; border-left-style: solid; border-left-width: 20px; background-color: white; padding: 6px; width: 400px; position: absolute; left: 180px; }
+.magazineTitles h1 { border-left-color: darkgrey; border-left-style: solid; border-left-width: 20px; background-color: white; padding: 6px;  position: absolute; left: 180px; }
+.magazineTitles h1 font {  font-size: 20px }

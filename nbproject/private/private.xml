@@ -5,6 +5,9 @@
         <group>
             <file>file:/var/www/AslEljava/resources/css/style.css</file>
 <<<<<<< HEAD
+            <file>file:/var/www/AslEljava/style.css</file>
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
             <file>file:/var/www/AslEljava/productAddAgain.php</file>
             <file>file:/var/www/AslEljava/lib.php</file>
@@ -13,7 +16,9 @@
 =======
 =======
 >>>>>>> 06a5b5ffe61548f1efb51df9cf28fc4d1cb67c29
+>>>>>>> a94c1203440d07045d01a45a002507506a84836e
             <file>file:/var/www/AslEljava/resources/js/functions.js</file>
+            <file>file:/var/www/AslEljava/store.php</file>
             <file>file:/var/www/AslEljava/lib.php</file>
             <file>file:/var/www/AslEljava/index.php</file>
             <file>file:/var/www/AslEljava/Product.php</file>

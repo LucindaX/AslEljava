@@ -108,7 +108,15 @@
 
                     <?php
                       if(isset($_GET['page'])) {
-                          $page = 2;
+                          if($_GET['page'] == 1) {
+                              $page = 1;
+                          }
+                          else if($_GET['page'] == 2) {
+                              $page = 2;
+                          }
+                          else if($_GET['page'] == 3) {
+                              $page = 3;
+                          }
                       }
                       else {
                           $page = 1;
@@ -116,7 +124,23 @@
                       
                       $conn = createConnection();
                       
-                      if($page == 2) {
+                      if($page == 3) {
+                          if(isset($_GET['id'])) {
+                    ?>
+                    '<div class="magazineTitles">';
+                        <center>  <h1 style=""><font color="green"> Congratulation </font> .. You have successfully published Magazine :</h1><br></br></center>
+      
+                    </div>';
+                    <center><input type="button" class="red" value="Download Magazine as PDF" style="font-size: 18px" onclick="window.location = <?php echo $_GET['id'];?>+'.pdf' "/> &nbsp;&nbsp;&nbsp;
+                           <input type="button" class="red" value="Preview Magazine in browser" style="font-size: 18px" onclick="window.location = <?php echo $_GET['id'];?>+'.pdf' "/> </center><br></br>
+
+                    <?php
+                          }
+                          else {
+                              header('Location: AddProduct.php');  
+                          }
+                      }
+                      else if($page == 2) {
                           $actionSubmit = "Publish";
                     ?>
                          <form action="Publish.php" method="post" onsubmit="return validate()">      
@@ -127,7 +151,11 @@
                           else {
                               echo '<input type="hidden" id="data" name="data" value="'.$_POST['data'].'" />';
                           }
-                          printMagazineInfo();    
+                          printMagazineInfo();  
+                    ?>
+                            <center><input type="submit" class="red" value="Continue" style="font-size: 18px" /> </center><br></br>
+                          </form>
+                    <?php
                       }
                       else {
                           $actionSubmit = "Continue";
@@ -135,13 +163,14 @@
                     ?>
                           <form action="AddProduct.php?page=2" method="post" onsubmit="return continuePublish()">
                             <input type="hidden" id="data" name="data" />
+                            <center><input type="submit" class="red" value="Continue" style="font-size: 18px" /> </center><br></br>
+                          </form>
                           
                     <?php
                       }
                       mysqli_close($conn);
                     ?>
-                            <center><input type="submit" class="red" value="<?php echo $actionSubmit;?>" style="font-size: 18px" /> </center><br></br>
-                    </form>
+                            
                     <!-- END Products -->
 	
 			<!-- Footer  -->
@@ -215,6 +244,7 @@
             
             itemNode.innerHTML = item.name ;
             itemNode.name = item.id;
+            itemHolder.style.display = "inline-block";
             itemNode.style.display = "inline-block";
             xItemNode.style.display = "inline-block";
             
