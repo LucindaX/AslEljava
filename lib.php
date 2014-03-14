@@ -146,77 +146,8 @@
               echo '<p class="price">' . $item->price . ' L.E </p>';
             echo '</div>';
           echo '</div>';
-    }
-                
+    }          
 
-    //i have included the WkHtmlToPdf class with my commit
-    //you have to have the WkHtmlToPdf command running on your terminal
-    //also the css file is included and is primary for the output to be displayed correctly
-
-    function publish($id) {
-        $con = createConnection();
-        $pdf = new WkHtmlToPdf(array(
-            'no-outline',
-            'margin-top' => 20,
-            'margin-right' => 0,
-            'margin-bottom' => 0,
-            'margin-left' => 0,
-        ));
-        $pdf->setPageOptions(array(
-            'disable-smart-shrinking',
-            'user-style-sheet' => '/var/www/AslEljava/style.css',
-            'zoom' => 0.5
-        ));
-        $sql = "select * from products where p_id in (select prod_id from product_magazine where magzn_id = " . $id . ")";
-        $magazine = "";
-        $result = mysqli_query($con, $sql);
-        if ($result) {
-            $magazine.= "<html><head><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
-            $prod_count = 0;
-            while ($row = mysqli_fetch_array($result)) {
-                if ($prod_count == 4) {
-                    $magazine.= "</body></html>";
-                    $pdf->addPage($magazine);
-                    $magazine = "<html><head><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
-                    $prod_count = 1;
-                }
-
-                //images should be included with their absolute path for the to appear correctly in the pdf
-                //either we include the path in the database or we add it here as defined
-
-                $magazine.= "  <div class='prod'>
-                    <div class='image'><img src='" . $row["p_img"] . "' width=200px height=150px/></div>
-                    <div class='qrcode'><img src='" . $row["p_QR"] . "' width=150px height=150px/></div>
-                    <div class='description'><div class='product_name'><strong>Product Name : </strong>" . $row["p_name"] . " </div>
-                                             <div class='features'><strong>Description : </strong>" . $row["p_desc"] . "</div>
-                                             <div class='afterprice'><strong>Price : </strong>" . $row["p_price"] . "</div>
-                    </div>
-                    </div>
-
-        ";
-                $prod_count++;
-            }
-
-            if ($prod_count % 4 != 0) {
-                $magazine.= "</body></html>";
-                $pdf->addPage($magazine);
-            }
-        }
-
-        // if you want to view document on browser uncomment this header and use $pdf->send() instead of $pdf->saveAs('test.pdf') which
-        // saves a pdf file with the output to your php file directory
-        // header('Content-type: application/pdf')
-
-        mysqli_close($con);
-        if (!$pdf->saveAs($id.'.pdf')) {
-            throw new Exception('Could not create PDF: ' . $pdf->getError()); //
-        }
-        else {
-            header('Content-type: application/pdf');
-            
-            $pdf->send($id.'.pdf');
-        }
-    }
     
     function addNewMagazine($conn,$itemsId,$title,$edition) {
         
@@ -258,3 +189,117 @@
     function yourFunction() {
 
     }
+
+//i have included the WkHtmlToPdf class with my commit
+//you have to have the WkHtmlToPdf command running on your terminal
+//also the css file is included and is primary for the output to be displayed correctly
+
+function publish($id)
+{
+	$con = createConnection();
+	$pdf = new WkHtmlToPdf(array(
+		'no-outline',
+		'margin-top' => 20,
+		'margin-right' => 0,
+		'margin-bottom' => 0,
+		'margin-left' => 0,
+	));
+	$pdf->setPageOptions(array(
+		'disable-smart-shrinking',
+		'user-style-sheet' => '/var/www/style.css',
+		'zoom' => 0.5
+	));
+	$sql = "select * from products where p_id in (select prod_id from product_magazine where magzn_id = " . $id . ")";
+	$magazine = "";
+	$result = mysqli_query($con, $sql);
+	if ($result)
+	{
+		$magazine.= "<html><head><link rel='stylesheet' type='text/css' href='/var/www/style.css'></head><body>";
+		$prod_count = 0;
+		while ($row = mysqli_fetch_array($result))
+		{
+			if ($prod_count % 4 == 0)
+			{
+				$magazine.= "</body></html>";
+				$pdf->addPage($magazine);
+				$magazine = "<html><head><link rel='stylesheet' type='text/css' href='/var/www/style.css'></head><body>";
+				$prod_count = 1;
+			}
+		
+			//images should be included with their absolute path for the to appear correctly in the pdf
+			//either we include the path in the database or we add it here as defined
+
+			$magazine.= "  <div class='prod'>
+		<div class='image'><img src='" . $row["p_img"] . "' width=200px height=150px/></div>
+		<div class='qrcode'><img src='" . $row["p_QR"] . "' width=150px height=150px/></div>
+		<div class='description'><div class='product_name'><strong>Product Name : </strong>" . $row["p_name"] . " </div>
+					 <div class='features'><strong>Description : </strong>" . $row["p_desc"] . "</div>
+					 <div class='afterprice'><strong>Price : </strong>" . $row["p_price"] . "</div>
+		</div>
+		</div>
+
+    ";
+			$prod_count++;
+		}
+
+		if ($prod_count % 4 != 0)
+		{
+			$magazine.= "</body></html>";
+			$pdf->addPage($magazine);
+		}
+	}
+
+	// if you want to view document on browser uncomment this header and use $pdf->send() instead of $pdf->saveAs('test.pdf') which
+	// saves a pdf file with the output to your php file directory
+	 header('Content-type: application/pdf');
+
+	mysqli_close($con);
+	if (!$pdf->saveAs($id.'.pdf'))
+	{
+		throw new Exception('Could not create PDF: ' . $pdf->getError()); //
+	}
+        
+        $pdf->send($id.'.pdf');   
+}
+
+
+
+
+
+function geoCheckIP($ip)
+       {
+               //check, if the provided ip is valid
+               if(!filter_var($ip, FILTER_VALIDATE_IP))
+               {
+                       throw new InvalidArgumentException("IP is not valid");
+               }
+
+               //contact ip-server
+               $response=@file_get_contents('http://www.netip.de/search?query='.$ip);
+               if (empty($response))
+               {
+                       throw new InvalidArgumentException("Error contacting Geo-IP-Server");
+               }
+
+               //Array containing all regex-patterns necessary to extract ip-geoinfo from page
+               $patterns=array();
+               $patterns["domain"] = '#Domain: (.*?)&nbsp;#i';
+               $patterns["country"] = '#Country: (.*?)&nbsp;#i';
+               $patterns["state"] = '#State/Region: (.*?)<br#i';
+               $patterns["town"] = '#City: (.*?)<br#i';
+
+               //Array where results will be stored
+               $ipInfo=array();
+
+               //check response from ipserver for above patterns
+               foreach ($patterns as $key => $pattern)
+               {
+                       //store the result in array
+                       $ipInfo[$key] = preg_match($pattern,$response,$value) && !empty($value[1]) ? $value[1] : 'not found';
+               }
+
+               return $ipInfo;
+       }
+
+
+?>
