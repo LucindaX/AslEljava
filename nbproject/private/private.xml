@@ -5,17 +5,23 @@
         <group>
             <file>file:/var/www/AslEljava/resources/css/style.css</file>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/var/www/AslEljava/productAddAgain.php</file>
             <file>file:/var/www/AslEljava/lib.php</file>
             <file>file:/var/www/AslEljava/empty.html</file>
             <file>file:/var/www/AslEljava/addNewProduct.php</file>
 =======
+=======
+>>>>>>> 06a5b5ffe61548f1efb51df9cf28fc4d1cb67c29
             <file>file:/var/www/AslEljava/resources/js/functions.js</file>
             <file>file:/var/www/AslEljava/lib.php</file>
             <file>file:/var/www/AslEljava/index.php</file>
             <file>file:/var/www/AslEljava/Product.php</file>
             <file>file:/var/www/AslEljava/Publish.php</file>
             <file>file:/var/www/AslEljava/AddProduct.php</file>
+<<<<<<< HEAD
+>>>>>>> 06a5b5ffe61548f1efb51df9cf28fc4d1cb67c29
+=======
 >>>>>>> 06a5b5ffe61548f1efb51df9cf28fc4d1cb67c29
         </group>
     </open-files>

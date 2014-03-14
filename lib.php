@@ -1,25 +1,21 @@
+   <?php
 
-<?php
-require_once('WkHtmlToPdf.php');
-include('phpqrcode/qrlib.php'); 
-/*
- * Add your own function with those commands ( da 3shan lw 7ad nasa ;) )
- * git add --> Your Updated File <--
- * git commit -m --> Update Message <-- 
- * git push 
- * 
- * Ay 7ad 3ando comment aw ektra7 yektbo hena :D 
- * 
- * ----------> Name Convention <-----------
- */
+    require_once('WkHtmlToPdf.php');
+    include('phpqrcode/qrlib.php'); 
+    /*
+     * Add your own function with those commands ( da 3shan lw 7ad nasa ;) )
+     * git add --> Your Updated File <--
+     * git commit -m --> Update Message <-- 
+     * git push 
+     * 
+     * Ay 7ad 3ando comment aw ektra7 yektbo hena :D 
+     * 
+     * ----------> Name Convention <-----------
+     */
 
-    function createConnection($dbUser,$dbPass) {
-
-
-    //function createConnection() {
-    //    $dbUser = "root"; // Add your username here 
-    //    $dbPass = "54889" ; // Add your password here 
-
+    function createConnection() {
+        $dbUser = "root"; // Add your username here 
+        $dbPass = "54889" ; // Add your password here 
         $dbHost = "localhost";
         $dbName = "phpproject";
         $con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
@@ -196,11 +192,10 @@ include('phpqrcode/qrlib.php');
     }
 
 
-    
-  
 //i have included the WkHtmlToPdf class with my commit
 //you have to have the WkHtmlToPdf command running on your terminal
 //also the css file is included and is primary for the output to be displayed correctly
+
 
 
 
@@ -289,6 +284,74 @@ include('phpqrcode/qrlib.php');
         }
 
 
+function publish($id)
+{
+	$con = createConnection();
+	$pdf = new WkHtmlToPdf(array(
+		'no-outline',
+		'margin-top' => 20,
+		'margin-right' => 0,
+		'margin-bottom' => 0,
+		'margin-left' => 0,
+	));
+	$pdf->setPageOptions(array(
+		'disable-smart-shrinking',
+		'user-style-sheet' => 'style.css',
+		'zoom' => 0.5
+	));
+	$sql = "select * from products where p_id in (select prod_id from product_magazine where magzn_id = " . $id . ")";
+	$magazine = "";
+	$result = mysqli_query($con, $sql);
+	if ($result)
+	{
+		$magazine.= "<html><head><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
+		$prod_count = 0;
+		while ($row = mysqli_fetch_array($result))
+		{
+			if ($prod_count % 4 == 0)
+			{
+				$magazine.= "</body></html>";
+				$pdf->addPage($magazine);
+				$magazine = "<html><head><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
+				$prod_count = 1;
+			}
+		
+			//images should be included with their absolute path for the to appear correctly in the pdf
+			//either we include the path in the database or we add it here as defined
+
+			$magazine.= "  <div class='prod'>
+		<div class='image'><img src='" . $row["p_img"] . "' width=200px height=150px/></div>
+		<div class='qrcode'><img src='" . $row["p_QR"] . "' width=150px height=150px/></div>
+		<div class='description'><div class='product_name'><strong>Product Name : </strong>" . $row["p_name"] . " </div>
+					 <div class='features'><strong>Description : </strong>" . $row["p_desc"] . "</div>
+					 <div class='afterprice'><strong>Price : </strong>" . $row["p_price"] . "</div>
+		</div>
+		</div>
+
+    ";
+			$prod_count++;
+		}
+
+		if ($prod_count % 4 != 0)
+		{
+			$magazine.= "</body></html>";
+			$pdf->addPage($magazine);
+		}
+	}
+
+	// if you want to view document on browser uncomment this header and use $pdf->send() instead of $pdf->saveAs('test.pdf') which
+	// saves a pdf file with the output to your php file directory
+	 header('Content-type: application/pdf');
+
+	mysqli_close($con);
+	if (!$pdf->saveAs($id.'.pdf'))
+	{
+		throw new Exception('Could not create PDF: ' . $pdf->getError()); //
+	}
+        
+        $pdf->send($id.'.pdf');   
+}
+
 
 
 
@@ -330,5 +393,3 @@ function geoCheckIP($ip)
        }
 
 
-
-?>
