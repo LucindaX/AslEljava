@@ -1,10 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
 	<title>PHP Project</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="resources/css/images/favicon.ico" />
 	<link rel="stylesheet" href="resources/css/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="resources/css/pbox.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="resources/css/prettyCheckboxes.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="resources/css/redButton.css" type="text/css" media="all" />
 	<script src="resources/js/jquery-1.7.min.js" type="text/javascript"></script>
@@ -13,15 +14,6 @@
 	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
 	<script src="vjs/functions.js" type="text/javascript"></script>
 </head>
-<<<<<<< HEAD
-    
-    <?php
-        if(isset($_GET["taken"])){
-        echo " <script> alert(\"Product Aleardy Exists\"); </script> "; 
-        }
-     ?>   
-=======
->>>>>>> 75cafb422562b0322cd1315d888b78cf5f8fc3a8
 <body>
 	<div class="shell">
 		<!-- Header -->
@@ -96,87 +88,27 @@
 			<!-- Latest Products -->
 			<div class="products">
                             <div>
-<<<<<<< HEAD
-				<h2>Add Product :</h2>
-                                <form class="showProduct" action="addNewProduct.php" method="post" enctype="multipart/form-data" onsubmit="return check();">
-                                    <label for="pname">Name : </label>
-                                    <input type="text" name="pname" id="pname"/><br/><br/>
-                                   
-                                    <label for="pdesc">Description : </label>
-                                    <input type="text" name="pdesc" id="pdesc"/><br/><br/>  
-                                   
-                                    <label for="price">Price : </label>
-                                    <input type="number" name="price" id="price"/><br/><br/>
-                                   
-                                    <label for="stock">Stock : </label>
-                                    <input type="number" name="pstock" id="stock"/><br/><br/>
-                                   
-                                    <label for="image">Image : </label>
-                                    <!--<input type="text" name="image" id="image"/><br/>-->                                   
-                                    <input type="file" name="image" id="image" accept="image/*"/><br/><br/>
-                                                                      
-                                    <label for="qrc">QR code URL : </label>
-                                    <input type="text" name="qrc" id="qrc"/><br/><br/>
-                                    
-                                    <label for="date">Addition Date : </label>
-                                    <input type="date" name="date" id="date"/><br/><br/>
-                                    
-                                    <label for="categ">Category : </label>
-                                    <input type="text" name="categ" id="categ"/><br/><br/>
-                                    
-                                    <input class="btn" type="submit" value="Add Product" />
-                                </form>
-=======
-				<h2>Edit Product :</h2>
-                               <?php
+				<h2>Enter Product's name to delete :</h2>
+         <?php
+        
+                  include 'lib.php';
+                  $conn = createConnection("root","654321");//1 connect to db
+                  deleteProducts();//2
+                  $pname=$_POST["pname"];
+                  $query = "delete from products where p_name ='".$pname."'";
+                  $result =mysqli_query($conn, $query);//3
+               // don't forget to close connection :) 
+                  mysqli_close($conn);  
+           
 
 
-
->>>>>>> 75cafb422562b0322cd1315d888b78cf5f8fc3a8
-                            </div>
+         ?>
+</div>
 				<div class="cl"></div>
 			</div>
 			<!-- END Latest Products -->		
 		</div>
 		<!-- END Main -->
 	</div>	
-<<<<<<< HEAD
-    
-    <script>
-        var res = null ;
-        var q=null;
-     function check(){
-           var xhr = new XMLHttpRequest();
-            var name = document.getElementById('pname').value;
-            xhr.open("get","notUniqueName.php?pname="+name,true);
-            xhr.send();
-            xhr.readyStateChange = function (){if (xhr.readyState == 4) q=4; };
-            while(q!=4){
-                
-            }
-            
-        
-        
-           xhr.onload = function () {
-           alert(this.response);
-            if(this.response == 1) {
-                alert("dsadas");
-                res = false;
-            }
-            
-            if(res) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        };
-        
-      return res;
-       
-    } 
-    </script>
-=======
->>>>>>> 75cafb422562b0322cd1315d888b78cf5f8fc3a8
-</body>
+      </body>
 </html>

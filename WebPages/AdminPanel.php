@@ -1,3 +1,12 @@
+<!--
+   ----------------------- Under Construction ----------------
+-->
+
+<?php
+  include 'lib.php';
+  
+  userAuthentication();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
@@ -11,17 +20,8 @@
 	<script src="resources/js/jquery.jcarousel.js" type="text/javascript"></script>
 	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
 	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
-	<script src="vjs/functions.js" type="text/javascript"></script>
+	<script src="resources/js/functions.js" type="text/javascript"></script>
 </head>
-<<<<<<< HEAD
-    
-    <?php
-        if(isset($_GET["taken"])){
-        echo " <script> alert(\"Product Aleardy Exists\"); </script> "; 
-        }
-     ?>   
-=======
->>>>>>> 75cafb422562b0322cd1315d888b78cf5f8fc3a8
 <body>
 	<div class="shell">
 		<!-- Header -->
@@ -95,88 +95,39 @@
 			<div class="cl"></div>
 			<!-- Latest Products -->
 			<div class="products">
-                            <div>
-<<<<<<< HEAD
-				<h2>Add Product :</h2>
-                                <form class="showProduct" action="addNewProduct.php" method="post" enctype="multipart/form-data" onsubmit="return check();">
-                                    <label for="pname">Name : </label>
-                                    <input type="text" name="pname" id="pname"/><br/><br/>
-                                   
-                                    <label for="pdesc">Description : </label>
-                                    <input type="text" name="pdesc" id="pdesc"/><br/><br/>  
-                                   
-                                    <label for="price">Price : </label>
-                                    <input type="number" name="price" id="price"/><br/><br/>
-                                   
-                                    <label for="stock">Stock : </label>
-                                    <input type="number" name="pstock" id="stock"/><br/><br/>
-                                   
-                                    <label for="image">Image : </label>
-                                    <!--<input type="text" name="image" id="image"/><br/>-->                                   
-                                    <input type="file" name="image" id="image" accept="image/*"/><br/><br/>
-                                                                      
-                                    <label for="qrc">QR code URL : </label>
-                                    <input type="text" name="qrc" id="qrc"/><br/><br/>
-                                    
-                                    <label for="date">Addition Date : </label>
-                                    <input type="date" name="date" id="date"/><br/><br/>
-                                    
-                                    <label for="categ">Category : </label>
-                                    <input type="text" name="categ" id="categ"/><br/><br/>
-                                    
-                                    <input class="btn" type="submit" value="Add Product" />
-                                </form>
-=======
-				<h2>Edit Product :</h2>
-                               <?php
-
-
-
->>>>>>> 75cafb422562b0322cd1315d888b78cf5f8fc3a8
-                            </div>
+				<h2>Admin Panel :</h2>
+				<div class="product-holder">
+					<div class="product">
+						<a title="Details" href="#"><img src="resources/css/images/startMagazine.png" alt="Black and red stylish computer case" /></a>
+						<p>Start Magazine</p>							
+					</div>
+				</div>
+				<div class="product-holder">
+					<div class="product">
+						<a title="Details" href="#"><img src="resources/css/images/newProduct.png.png" alt="Beautiful white case with flower motives" /></a>
+						<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />			
+						<p>New Product</p>													
+					</div>
+				</div>
+				<div class="product-holder">
+					<div class="product">
+						<a title="Details" href="#"><img src="resources/css/images/viewProducts.png" alt="Beautiful white case with flower motives" /></a>
+						<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />			
+						<p>View Products<</p>													
+					</div>
+				</div>
+				<div class="product-holder">
+					<div class="product">
+						<a title="Details" href="#"><img src="resources/css/images/viewProducts.png" alt="Beautiful white case with flower motives" /></a>
+						<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />			
+						<p>Search Products</p>													
+					</div>
+				</div>
 				<div class="cl"></div>
 			</div>
 			<!-- END Latest Products -->		
 		</div>
 		<!-- END Main -->
 	</div>	
-<<<<<<< HEAD
-    
-    <script>
-        var res = null ;
-        var q=null;
-     function check(){
-           var xhr = new XMLHttpRequest();
-            var name = document.getElementById('pname').value;
-            xhr.open("get","notUniqueName.php?pname="+name,true);
-            xhr.send();
-            xhr.readyStateChange = function (){if (xhr.readyState == 4) q=4; };
-            while(q!=4){
-                
-            }
-            
-        
-        
-           xhr.onload = function () {
-           alert(this.response);
-            if(this.response == 1) {
-                alert("dsadas");
-                res = false;
-            }
-            
-            if(res) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        };
-        
-      return res;
-       
-    } 
-    </script>
-=======
->>>>>>> 75cafb422562b0322cd1315d888b78cf5f8fc3a8
 </body>
 </html>
