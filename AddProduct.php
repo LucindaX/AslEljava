@@ -2,7 +2,7 @@
 ----------------------- Under Construction ----------------
 -->
 
-<?php
+<?php ob_start();
  include 'lib.php';
  
  userAuthentication();
@@ -10,7 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
-	<title>PHP Project</title>
+	<title>Add Product</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <link rel="shortcut icon" href="resources/css/images/favicon.ico" />
 	<link rel="stylesheet" href="resources/css/style.css" type="text/css" media="all" />
@@ -92,68 +92,58 @@
 		<!-- Main  -->
 		<div id="main">
 			
-			<div class="cl"></div>
-			<!-- Latest Products -->
-			<div class="products">
-				<h2>Products :</h2>
-                                
-				<?php
-                                  $conn = createConnection("root", "54889");
-                                  printAllProducts($conn)
-                                ?>
-                                
-				<div class="cl"></div>
-			</div>
-			<!-- END Latest Products -->
-			<!-- Feartured Products -->
-			<div class="products featured">
-				<h2>Featured Products</h2>
-				<div class="products-slider">
-					<ul>
-						<li>
-							<a title="Details" href="#"><img src="css/images/1.jpg" alt="Silver half transparent with blue lights computer case" /></a>
-							<p>Model Name</p>
-						</li>
-						<li>
-							<a title="Details" href="#"><img src="css/images/2.jpg" alt="Solid brown computer case" /></a>
-							<p>Model Name</p>
-						</li>
-						<li>
-							<a title="Details" href="#"><img src="css/images/3.jpg" alt="Computer case with a fan on the side and blue lights" /></a>
-							<p>Model Name</p>
-						</li>
-						<li>
-							<a title="Details" href="#"><img src="css/images/4.jpg" alt="Half transparent black computer case" /></a>
-							<p>Model Name</p>
-						</li>
-						<li>
-							<a title="Details" href="#"><img src="css/images/5.jpg" alt="Compyter case with three extra fans and blue lights" /></a>
-							<p>Model Name</p>
-						</li>
-						<li>
-							<a title="Details" href="#"><img src="css/images/1.jpg" alt="Silver half transparent with blue lights computer case" /></a>
-							<p>Model Name</p>
-						</li>
-						<li>
-							<a title="Details" href="#"><img src="css/images/2.jpg" alt="Solid brown computer case" /></a>
-							<p>Model Name</p>
-						</li>
-						<li>
-							<a title="Details" href="#"><img src="css/images/3.jpg" alt="Computer case with a fan on the side and blue lights" /></a>
-							<p>Model Name</p>
-						</li>
-						<li>
-							<a title="Details" href="#"><img src="css/images/4.jpg" alt="Half transparent black computer case" /></a>
-							<p>Model Name</p>
-						</li>
-						<li>
-							<a title="Details" href="#"><img src="css/images/5.jpg" alt="Computer case with three extra fans and blue lights" /></a>
-							<p>Model Name</p>
-						</li>										
-					</ul>
-				</div>
-			</div>
-			<!-- END Featured Products -->			
+                    <div class="itemsHolder" id="itemsHolder" ondragover="event.preventDefault();" ondrop="
+                         event.preventDefault();
+                         elementId = event.dataTransfer.getData('text');                         
+                         element = document.getElementById(elementId);
+                 
+                         addItem(element);
+                         ">          
+                    </div>
+                    <div id="item">    
+                       <input type="button" id="xItem" value="x" style="display: none" onmouseover="this.style.backgroundColor = 'darkgrey'"  onmouseout="this.style.backgroundColor = 'lightgrey'" onmousedown="this.style.backgroundColor = 'lightgrey'" onmouseup="this.style.backgroundColor = 'lightgrey'" onclick="removeItem(this.parentNode)"/>
+                     </div>
+
+                    <!-- Products -->	
+
+                    <?php
+                      if(isset($_GET['page'])) {
+                          $page = 2;
+                      }
+                      else {
+                          $page = 1;
+                      }
+                      
+                      $conn = createConnection();
+                      
+                      if($page == 2) {
+                          $actionSubmit = "Publish";
+                    ?>
+                         <form action="Publish.php" method="post" onsubmit="return validate()">      
+                    <?php
+                          if(!isset($_POST['data'])) {
+                              header('Location: AddProduct.php');                              
+                          }
+                          else {
+                              echo '<input type="hidden" id="data" name="data" value="'.$_POST['data'].'" />';
+                          }
+                          printMagazineInfo();    
+                      }
+                      else {
+                          $actionSubmit = "Continue";
+                          printAllProducts($conn);
+                    ?>
+                          <form action="AddProduct.php?page=2" method="post" onsubmit="return continuePublish()">
+                            <input type="hidden" id="data" name="data" />
+                          
+                    <?php
+                      }
+                      mysqli_close($conn);
+                    ?>
+                            <center><input type="submit" class="red" value="<?php echo $actionSubmit;?>" style="font-size: 18px" /> </center><br></br>
+                    </form>
+                    <!-- END Products -->
+	
 			<!-- Footer  -->
 			<div id="footer">
 				<div id="footer-top"></div>
@@ -200,5 +190,84 @@
 		</div>
 		<!-- END Main -->
 	</div>	
+    <script>
+        
+        var items = [];
+
+        function addItem(item) {
+           
+            items.push(item.id);
+            
+            item.style.background = "lightgrey";
+            item.style.borderColor = "transparent";
+            item.value = "added"; 
+            item.disabled = true;
+            
+            imgDrag = document.getElementById(item.id+'drag');
+            imgDrag.style.display = "none";
+            
+            var itemDiv = document.getElementById("item");
+            var xItem = document.getElementById("xItem");
+            var itemHolder = document.getElementById("itemsHolder");
+            
+            itemNode = itemDiv.cloneNode();
+            xItemNode = xItem.cloneNode();
+            
+            itemNode.innerHTML = item.name ;
+            itemNode.name = item.id;
+            itemNode.style.display = "inline-block";
+            xItemNode.style.display = "inline-block";
+            
+            itemNode.appendChild(xItemNode);
+            itemHolder.appendChild(itemNode);
+            
+        }
+        
+        function removeItem(item) {          
+            var itemIndex = items.indexOf(item.id);
+            items.splice(itemIndex,1);
+            
+            product = document.getElementById(item.name);
+            item.parentNode.removeChild(item);
+            
+            imgDrag = document.getElementById(item.name+'drag');
+            imgDrag.style.display = "inline-block";
+            
+            product.style.background = "-webkit-gradient(linear,left top,left bottom,from(#aa1317),to(#ed1c24))";
+            product.style.border = "solid 1px #980c10";
+            product.value = "Add"; 
+            product.disabled = false;
+        }
+        
+        function continuePublish() {
+            if(items.length <3) {
+                alert("Add more Items plz"); 
+                return false;
+            }
+            else {
+               var itemsParameter = "";
+               
+               for(var i=0;i<items.length;i++) {
+                   if(i === 0) {
+                      itemsParameter = items[0];   
+                   }
+                   else {
+                      itemsParameter = itemsParameter + "@" + items[i];  
+                    }
+               }
+               
+               document.getElementById("data").value = itemsParameter;
+               return true;
+            }
+       }
+       
+       function validate() {
+            if(!document.getElementById("title").value.trim() || !document.getElementById("edition").value.trim()) {
+             alert('All data are required !');
+             return false;    
+            }       
+            return true;
+       }
+    </script>
 </body>
 </html>
