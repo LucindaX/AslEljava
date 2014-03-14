@@ -1,3 +1,4 @@
+
     <?php
 
     require_once('WkHtmlToPdf.php');
@@ -21,6 +22,7 @@
 
         // Check connection
         if (mysqli_connect_errno()) {
+
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 
@@ -189,6 +191,81 @@
     function yourFunction() {
 
     }
+ //----------------------------------S.S
+  function deleteProducts()
+    {
+
+       echo"<html>";
+       echo"<body>";
+       echo"<form action=deleteproduct.php   method=post>";
+       echo"<div class=pform><b><i> Please Enter Product Name To Delete : </i></b> </div>";
+       echo"<INPUT TYPE=TEXT NAME=pname class=inputclass /> <br> <br>";
+       echo"<input type=submit  id=subbtn name=submitbtn value=DeleteProduct />";
+       echo"</form>";
+       echo"</body>";
+       echo"</html>";
+
+    }
+    //----------------------------------S.S
+       function  selectPToEdit()
+    {
+       echo"<html>";
+       echo"<body>";
+       echo"<form  action=editproduct.php method=post>";
+       echo"<div class=pform><b><i> Enter Product Name: </i></b> </div>";
+       echo"<INPUT TYPE=TEXT NAME=name class=inputclass /> <br> <br>";
+       echo"<input  id=subbtn type=submit name=submitbtn value=EditProduct />";
+       echo"</form>";
+       echo"</body>";
+       echo"</html>";
+       
+
+   }
+    //---------------------------------S.S
+    function  drawEditLayout( $prodArr)
+    {
+       echo"<html>";
+       echo"<body>";
+       echo"<form  action=insertIntoDB.php  method=post>";
+      // echo"Product Id :";
+       echo"<INPUT NAME=pid type=hidden value=".$prodArr[0]." class=inputclass /> <br> <br>";
+
+
+       echo"<div class=pform><b><i>Product Name : </i></b> </div>";
+       echo"<INPUT TYPE=TEXT NAME=pname    value='".$prodArr[1]."' class=inputclass /> <br> <br>";
+
+       echo" <div class=pform><b><i> Product Description :</i></b> </div>";
+      // echo"<INPUT TYPE=TEXT NAME=pdesc    value=$prodArr[2]> <br> <br>";//
+       echo"<textarea rows=4 cols=50 name=pdesc class=inputclass> ".$prodArr[2]." </textarea> <br> <br>";
+
+       echo"<div class=pform><b><i>Product Price : </i></b> </div>";
+       echo"<INPUT TYPE=number  NAME=pprice   value=".$prodArr[3]." class=inputclass /> <br> <br>";//
+
+       echo"<div class=pform><b><i>Product Stock :</i></b> </div>";
+       echo"<INPUT TYPE=number  NAME=Pstock   value=".$prodArr[4]." class=inputclass /> <br> <br>";//
+
+       echo"<div class=pform><b><i>Product Image :</i></b> </div>";
+       echo"<INPUT TYPE=file NAME=pimg     value='".$prodArr[5]."' class=inputclass /> <br> <br>"; //done
+
+       echo"<div class=pform><b><i>Product QR :</i></b> </div>";
+       echo"<INPUT TYPE=TEXT NAME=Pqr      value='".$prodArr[6]."' class=inputclass /> <br> <br>";
+
+       echo"<div class=pform><b><i>Product Date:</i></b> </div>";
+       echo"<INPUT TYPE=TEXT NAME=pdate    value= '".$prodArr[7]."' class=inputclass /> <br> <br>";//
+
+       echo"<div class=pform><b><i>Product Category:</i></b> </div>";
+       echo"<INPUT TYPE=number  NAME=pcategory value=".$prodArr[8]." class=inputclass /> <br> <br>";//
+
+       echo"<input type=submit name=submitbtn id=subbtn  value=Done />";
+       echo"</form>";
+       echo"</body>";
+       echo"</html>";
+       
+    } 
+
+    
+
+  
 
     //i have included the WkHtmlToPdf class with my commit
     //you have to have the WkHtmlToPdf command running on your terminal
