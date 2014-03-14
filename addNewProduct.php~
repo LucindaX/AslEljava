@@ -1,0 +1,30 @@
+<?php 
+	include('lib.php');
+
+	$pName = $_POST["pname"];
+	$pDesc = $_POST["pdesc"];
+	$pPrice = $_POST["price"];
+	$pStock = $_POST["pstock"];
+	$pImage =  $_FILES["image"]["name"];
+	$pQR = $_POST["qrc"];
+	$pDate =  $_POST["date"];
+	$pCateg = $_POST["categ"];
+
+	$imgError = $_FILES["image"]["error"];
+	$imgName = $_FILES["image"]["name"];
+	$imgType = $_FILES["image"]["type"];
+	$imgSize = $_FILES["image"]["size"];
+	$imgTmp = $_FILES["image"]["tmp_name"];
+	//$location = "Upload/";
+
+	echo "Name:".$imgName."<br/>";
+	echo "Type:".$imgType."<br/>";
+	echo "Size:".($imgSize / 1024) . " kB"."<br/>";
+	echo "Stored in:".$imgTmp."<br/>";
+	echo $pName." ".$pDesc." ".$pPrice." ".$pStock." ".$pImage." ".$pQR." ".$pDate." ".$pCateg;	
+
+	productImageUpload($imgError, $imgName, $imgType, $imgSize, $imgTmp);
+	$conn = createConnection("root","hello");
+	addNewProduct($conn, $pName, $pDesc, $pPrice, $pStock, $pImage, $pQR, $pDate, $pCateg);
+
+?>
