@@ -88,7 +88,6 @@
             echo '<center><h1 style="color:lightgrey"> No Products </h1></center>';
         }
     }
-    
 
     function printProducts($ar1, $ar2, $ar3, $conn) {
 
@@ -119,7 +118,6 @@
         echo '</div>';
         echo '<div class="cl"></div>';
     }
-    
 
     function printHtmlProduct($item, $conn) {
         echo '<div class="product-holder">';
@@ -147,7 +145,6 @@
         echo '</div>';
     }
 
-    
     function addNewMagazine($conn, $itemsId, $title, $edition) {
 
         $items = split("@", $itemsId);
@@ -172,10 +169,9 @@
                 }
             }
         }
-        
+
         return $magId;
     }
-    
 
     function printMagazineInfo() {
         echo '<div class="magazineTitles">';
@@ -187,80 +183,72 @@
         echo '</div>';
     }
 
-
-    
- //----------------------------------S.S
-  function deleteProducts()
-    {
-
-       echo"<html>";
-       echo"<body>";
-       echo"<form action=deleteproduct.php   method=post>";
-       echo"<div class=pform><b><i> Please Enter Product Name To Delete : </i></b> </div>";
-       echo"<INPUT TYPE=TEXT NAME=pname class=inputclass /> <br> <br>";
-       echo"<input type=submit  id=subbtn name=submitbtn value=DeleteProduct />";
-       echo"</form>";
-       echo"</body>";
-       echo"</html>";
-
-    }
     //----------------------------------S.S
-       function  selectPToEdit()
-    {
-       echo"<html>";
-       echo"<body>";
-       echo"<form  action=editproduct.php method=post>";
-       echo"<div class=pform><b><i> Enter Product Name: </i></b> </div>";
-       echo"<INPUT TYPE=TEXT NAME=name class=inputclass /> <br> <br>";
-       echo"<input  id=subbtn type=submit name=submitbtn value=EditProduct />";
-       echo"</form>";
-       echo"</body>";
-       echo"</html>";
-       
+    function deleteProducts() {
 
-   }
+        echo"<html>";
+        echo"<body>";
+        echo"<form action=deleteproduct.php   method=post>";
+        echo"<div class=pform><b><i> Please Enter Product Name To Delete : </i></b> </div>";
+        echo"<INPUT TYPE=TEXT NAME=pname class=inputclass /> <br> <br>";
+        echo"<input type=submit  id=subbtn name=submitbtn value=DeleteProduct />";
+        echo"</form>";
+        echo"</body>";
+        echo"</html>";
+    }
+
+    //----------------------------------S.S
+    function selectPToEdit() {
+        echo"<html>";
+        echo"<body>";
+        echo"<form  action=editproduct.php method=post>";
+        echo"<div class=pform><b><i> Enter Product Name: </i></b> </div>";
+        echo"<INPUT TYPE=TEXT NAME=name class=inputclass /> <br> <br>";
+        echo"<input  id=subbtn type=submit name=submitbtn value=EditProduct />";
+        echo"</form>";
+        echo"</body>";
+        echo"</html>";
+    }
+
     //---------------------------------S.S
-    function  drawEditLayout( $prodArr)
-    {
-       echo"<html>";
-       echo"<body>";
-       echo"<form  action=insertIntoDB.php  method=post>";
-      // echo"Product Id :";
-       echo"<INPUT NAME=pid type=hidden value=".$prodArr[0]." class=inputclass /> <br> <br>";
+    function drawEditLayout($prodArr) {
+        echo"<html>";
+        echo"<body>";
+        echo"<form  action=insertIntoDB.php  method=post>";
+        // echo"Product Id :";
+        echo"<INPUT NAME=pid type=hidden value=" . $prodArr[0] . " class=inputclass /> <br> <br>";
 
 
-       echo"<div class=pform><b><i>Product Name : </i></b> </div>";
-       echo"<INPUT TYPE=TEXT NAME=pname    value='".$prodArr[1]."' class=inputclass /> <br> <br>";
+        echo"<div class=pform><b><i>Product Name : </i></b> </div>";
+        echo"<INPUT TYPE=TEXT NAME=pname    value='" . $prodArr[1] . "' class=inputclass /> <br> <br>";
 
-       echo" <div class=pform><b><i> Product Description :</i></b> </div>";
-      // echo"<INPUT TYPE=TEXT NAME=pdesc    value=$prodArr[2]> <br> <br>";//
-       echo"<textarea rows=4 cols=50 name=pdesc class=inputclass> ".$prodArr[2]." </textarea> <br> <br>";
+        echo" <div class=pform><b><i> Product Description :</i></b> </div>";
+        // echo"<INPUT TYPE=TEXT NAME=pdesc    value=$prodArr[2]> <br> <br>";//
+        echo"<textarea rows=4 cols=50 name=pdesc class=inputclass> " . $prodArr[2] . " </textarea> <br> <br>";
 
-       echo"<div class=pform><b><i>Product Price : </i></b> </div>";
-       echo"<INPUT TYPE=number  NAME=pprice   value=".$prodArr[3]." class=inputclass /> <br> <br>";//
+        echo"<div class=pform><b><i>Product Price : </i></b> </div>";
+        echo"<INPUT TYPE=number  NAME=pprice   value=" . $prodArr[3] . " class=inputclass /> <br> <br>"; //
 
-       echo"<div class=pform><b><i>Product Stock :</i></b> </div>";
-       echo"<INPUT TYPE=number  NAME=Pstock   value=".$prodArr[4]." class=inputclass /> <br> <br>";//
+        echo"<div class=pform><b><i>Product Stock :</i></b> </div>";
+        echo"<INPUT TYPE=number  NAME=Pstock   value=" . $prodArr[4] . " class=inputclass /> <br> <br>"; //
 
-       echo"<div class=pform><b><i>Product Image :</i></b> </div>";
-       echo"<INPUT TYPE=file NAME=pimg     value='".$prodArr[5]."' class=inputclass /> <br> <br>"; //done
+        echo"<div class=pform><b><i>Product Image :</i></b> </div>";
+        echo"<INPUT TYPE=file NAME=pimg     value='" . $prodArr[5] . "' class=inputclass /> <br> <br>"; //done
 
-       echo"<div class=pform><b><i>Product QR :</i></b> </div>";
-       echo"<INPUT TYPE=TEXT NAME=Pqr      value='".$prodArr[6]."' class=inputclass /> <br> <br>";
+        echo"<div class=pform><b><i>Product QR :</i></b> </div>";
+        echo"<INPUT TYPE=TEXT NAME=Pqr      value='" . $prodArr[6] . "' class=inputclass /> <br> <br>";
 
-       echo"<div class=pform><b><i>Product Date:</i></b> </div>";
-       echo"<INPUT TYPE=TEXT NAME=pdate    value= '".$prodArr[7]."' class=inputclass /> <br> <br>";//
+        echo"<div class=pform><b><i>Product Date:</i></b> </div>";
+        echo"<INPUT TYPE=TEXT NAME=pdate    value= '" . $prodArr[7] . "' class=inputclass /> <br> <br>"; //
 
-       echo"<div class=pform><b><i>Product Category:</i></b> </div>";
-       echo"<INPUT TYPE=number  NAME=pcategory value=".$prodArr[8]." class=inputclass /> <br> <br>";//
+        echo"<div class=pform><b><i>Product Category:</i></b> </div>";
+        echo"<INPUT TYPE=number  NAME=pcategory value=" . $prodArr[8] . " class=inputclass /> <br> <br>"; //
 
-       echo"<input type=submit name=submitbtn id=subbtn  value=Done />";
-       echo"</form>";
-       echo"</body>";
-       echo"</html>";
-       
-    } 
-  
+        echo"<input type=submit name=submitbtn id=subbtn  value=Done />";
+        echo"</form>";
+        echo"</body>";
+        echo"</html>";
+    }
 
     //i have included the WkHtmlToPdf class with my commit
     //you have to have the WkHtmlToPdf command running on your terminal
@@ -287,30 +275,29 @@
             $magazine.= "<html><head><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
             $prod_count = 0;
             while ($row = mysqli_fetch_array($result)) {
-             
+
 
                 //images should be included with their absolute path for the to appear correctly in the pdf
                 //either we include the path in the database or we add it here as defined
 
                 $magazine.= "  <div class='prod'>
-                    <div class='image'><img src='" . $row["p_img"] . "' width=200px height=150px/></div>
-                    <div class='qrcode'><img src='" . $row["p_QR"] . "' width=150px height=150px/></div>
-                    <div class='description'><div class='product_name'><strong>Product Name : </strong>" . $row["p_name"] . " </div>
-                                             <div class='features'><strong>Description : </strong>" . $row["p_desc"] . "</div>
-                                             <div class='afterprice'><strong>Price : </strong>" . $row["p_price"] . "</div>
-                    </div>
-                    </div>
+                        <div class='image'><img src='" . $row["p_img"] . "' width=200px height=150px/></div>
+                        <div class='qrcode'><img src='" . $row["p_QR"] . "' width=150px height=150px/></div>
+                        <div class='description'><div class='product_name'><strong>Product Name : </strong>" . $row["p_name"] . " </div>
+                                                 <div class='features'><strong>Description : </strong>" . $row["p_desc"] . "</div>
+                                                 <div class='afterprice'><strong>Price : </strong>" . $row["p_price"] . "</div>
+                        </div>
+                        </div>
 
-        ";
-                
-                   $prod_count++;
-                if ($prod_count  == 4) {
+            ";
+
+                $prod_count++;
+                if ($prod_count == 4) {
                     $magazine.= "</body></html>";
                     $pdf->addPage($magazine);
                     $magazine = "<html><head><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
                     $prod_count = 0;
                 }
-                
             }
 
             if ($prod_count % 4 != 0) {
@@ -321,7 +308,7 @@
 
         // if you want to view document on browser uncomment this header and use $pdf->send() instead of $pdf->saveAs('test.pdf') which
         // saves a pdf file with the output to your php file directory
-       // header('Content-type: application/pdf');
+        // header('Content-type: application/pdf');
 
         mysqli_close($con);
         if (!$pdf->saveAs($id . '.pdf')) {
@@ -362,96 +349,87 @@
         return $ipInfo;
     }
 
+    function addNewProduct($conn, $pName, $pDesc, $pPrice, $pStock, $pDate, $pCateg) { //$pQRname, $pDate, $pCateg) {
+        $lastId = 0;
+        $i = 0;
+        $query = "select p_name from products where p_name='" . $pName . "'";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($result);
 
-	function addNewProduct($conn, $pName, $pDesc, $pPrice, $pStock, $pDate, $pCateg) { //$pQRname, $pDate, $pCateg) {
-		$lastId = 0;
-                $i = 0;
-                $query = "select p_name from products where p_name='".$pName."'";
-                $result = mysqli_query($conn, $query);
-                //$row = mysqli_fetch_row($result);
-                
-             if($result){
-                 header("Location: empty.php?taken=1");
-                   }
-              
-                else{
-                /*for($i = 0; $i < count($row); $i++){
-                   if ((strcmp($row[i], $pName)) == 0){
-                       echo $row[$i];
-                        header("Location: http://localhost/AslEljava/notUniqueName.php?pname=$pName&pdesc=$pDesc&price=$pPrice&stock=$pStock&date=$pDate&categ=$pCateg");
-                   }
-                }*/
-                
-		$query = "insert into products set p_name='" . $pName . "',p_desc='" . $pDesc . "',p_price=" . $pPrice . ",p_stock=" . $pStock . ",p_AddData='" . $pDate . "',p_category=" . $pCateg . "";
-		//,p_QR='" . $pQRname . "',p_img='" . $pImage . "'
-                echo $query;
-                $result = mysqli_query($conn, $query);
-		if ($result) {
-        		//echo "Insertion Successfull";
-                       $lastId = mysqli_insert_id($conn);                      
-   		 } else {
-        		echo "error..";
-   		 }
-    		
-                return $lastId;
-        }
-        mysqli_close($conn);
-                 }
+        if ($row) {
+            header("Location: NewProduct.php?taken=1");
+        } else {
+            /* for($i = 0; $i < count($row); $i++){
+              if ((strcmp($row[i], $pName)) == 0){
+              echo $row[$i];
+              header("Location: http://localhost/AslEljava/notUniqueName.php?pname=$pName&pdesc=$pDesc&price=$pPrice&stock=$pStock&date=$pDate&categ=$pCateg");
+              }
+              } */
 
-
-        function productImageUpload($imgError, $imgName, $imgType, $imgSize, $imgTmp, $lastId){
-		if($imgError>0){
-			echo "Error:".$imgError."<br/>";
-		}elseif($imgSize <= 4000000){ 
-			if(file_exists($imgName)){
-				echo $imgName."already exists.";		
-			}else{
-				move_uploaded_file($imgTmp,$imgName);
-				echo "Download is complete";
-                                $conn = createConnection("root","hello");
-                                $query = "update products set p_img='".$imgName."' where p_id=".$lastId."";
-                                //echo $query;
-                                $result = mysqli_query($conn, $query);
-                                if(!$result){
-                                    echo "error in product image";
-                                }                               
-			}
-		}else{
-			echo "File doen't match conditions";
-		}
-	}
-
-            
-            function generateQR($lastId){
-           
-                $imageName = "resources/images/test".$lastId.".png";
-                QRcode::png("10.1.42.192/AslEljava/store.php?prod_id=".$lastId,$imageName);
-                $conn = createConnection("root","hello");
-                $query = "update products set p_QR='".$imageName."' where p_id=".$lastId."";
-                echo $query;
-                $result = mysqli_query($conn, $query);
-		if ($result) {
-                    header("Location: http://localhost/AslEljava/productAddAgain.php?lastId=$lastId");
-                }else{
-                    echo "error..";
-                }
-    
+            $query = "insert into products set p_name='" . $pName . "',p_desc='" . $pDesc . "',p_price=" . $pPrice . ",p_stock=" . $pStock . ",p_AddData='" . $pDate . "',p_category=" . $pCateg . "";
+            //,p_QR='" . $pQRname . "',p_img='" . $pImage . "'
+            echo $query;
+            $result = mysqli_query($conn, $query);
+            if ($result) {
+                //echo "Insertion Successfull";
+                $lastId = mysqli_insert_id($conn);
+            } else {
+                echo "error..";
             }
 
-        
-        function dispalyAddedProduct($conn, $lastId){
-      
-            $query = "select * from products where p_id=".$lastId."";      
-            $result = mysqli_query($conn, $query);
-            $row = mysqli_fetch_array($result);
-            return $row;
+            return $lastId;
         }
+        mysqli_close($conn);
+    }
 
-        
+    function productImageUpload($imgError, $imgName, $imgType, $imgSize, $imgTmp, $lastId) {
+        if ($imgError > 0) {
+            echo "Error:" . $imgError . "<br/>";
+        } elseif ($imgSize <= 4000000) {
+            if (file_exists($imgName)) {
+                echo $imgName . "already exists.";
+            } else {
+                move_uploaded_file($imgTmp, $imgName);
+                echo "Download is complete";
+                $conn = createConnection("root", "hello");
+                $query = "update products set p_img='" . $imgName . "' where p_id=" . $lastId . "";
+                //echo $query;
+                $result = mysqli_query($conn, $query);
+                if (!$result) {
+                    echo "error in product image";
+                }
+            }
+        } else {
+            echo "File doen't match conditions";
+        }
+    }
+
+    function generateQR($lastId) {
+
+        $imageName = "resources/images/test" . $lastId . ".png";
+        QRcode::png("10.1.42.192/AslEljava/store.php?prod_id=" . $lastId, $imageName);
+        $conn = createConnection("root", "hello");
+        $query = "update products set p_QR='" . $imageName . "' where p_id=" . $lastId . "";
+        echo $query;
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            header("Location: productAddAgain.php?lastId=$lastId");
+        } else {
+            echo "error..";
+        }
+    }
+
+    function dispalyAddedProduct($conn, $lastId) {
+
+        $query = "select * from products where p_id=" . $lastId . "";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($result);
+        return $row;
+    }
+
     // this is template .. add your implementation of your own function here :) 
     function yourFunction() {
 
     }
-    
 
     ?>

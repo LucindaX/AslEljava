@@ -7,10 +7,10 @@
 
         session_start();
         if(isset($_SESSION["userName"])) {
-          header('Location: AdminPanel.php');
+          header('Location: WebPages/AdminPanel.php');
         }
         else {
-          header('Location: SignIn.php');
+          header('Location: WebPages/SignIn.php');
         }
         
        
