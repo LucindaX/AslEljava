@@ -28,14 +28,8 @@
 	
 		if($result){	
 			
-			$row=mysqli_fetch_array($result);
-
-			$hits=$row["p_hits"];
-			$stock=$row["p_stock"];
-			$stock--;
-			$hits++;
 		
-			$sql="update products set p_hits=".$hits." , p_stock=".$stock." where p_id=".$prod_id ;
+			$sql="update products set p_hits=p_hits+1 , p_stock=p_stock+1 where p_id=".$prod_id ;
 			
 			$result=mysqli_query($con,$sql);
 			if(mysqli_errno($con)) echo mysqli_errno($con).": ".mysqli_error($con);
