@@ -50,12 +50,7 @@ $(function() {
 
     if ($.browser.msie && $.browser.version == 6) {
         DD_belatedPNG.fix('#slider img, a.buy-now, .price-label, .sale-label, span.bullet, .submit-button, .holder');
-    }
-
-    $(".product").click(function(){
-        window.location=$(this).find("a").attr("href");
-        return false;
-    });  
+    } 
 });
 
 function mycarousel_initCallback(carousel) {
