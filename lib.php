@@ -1,5 +1,6 @@
 <?php
 require_once('WkHtmlToPdf.php');
+include('phpqrcode/qrlib.php'); 
 /*
  * Add your own function with those commands ( da 3shan lw 7ad nasa ;) )
  * git add --> Your Updated File <--
@@ -154,17 +155,55 @@ function publish($id)
 	}
 }
 
-function addNewProduct($conn, $pName, $pDesc, $pPrice, $pStock, $pImage, $pQR, $pDate, $pCateg) {
+	function addNewProduct($conn, $pName, $pDesc, $pPrice, $pStock, $pImage, $pQRname, $pDate, $pCateg) {
+		
+		$query = "insert into products set p_name='" . $pName . "',p_desc='" . $pDesc . "',p_price=" . $pPrice . ",p_stock=" . $pStock . ",p_img='" . $pImage . "',p_QR='" . $pQRname . "',p_AddData='" . $pDate . "',p_category=" . $pCateg . "";
+		echo $query;
+                $result = mysqli_query($conn, $query);
+		if ($result) {
+        		//echo "Insertion Successfull";
+                       $lastId = mysqli_insert_id($conn);
+                        header("Location: http://localhost/AslEljava/productAddAgain.php?lastId=$lastId");
+   		 } else {
+        		echo "error..";
+   		 }
+    		mysqli_close($conn);
+	}
 
-    $query = "insert into products set p_name='" . $pName . "',p_desc='" . $pDesc . "',p_price=" . $pPrice . ",p_stock=" . $pStock . ",p_img='" . $pImage . "',p_QR='" . $pQR . "',p_AddData='" . $pDate . "',p_category=" . $pCateg . "";
-    $result = mysqli_query($conn, $query);
-    $row = mysqli_fetch_array($result);
-    if ($row != null) {
-        echo "Insertion Successfull";
-    } else {
-        echo "error..";
-    }
-    mysqli_close($conn);
-}
-
+	function productImageUpload($imgError, $imgName, $imgType, $imgSize, $imgTmp){
+		if($imgError>0){
+			echo "Error:".$imgError."<br/>";
+		}elseif($imgSize <= 4000000){ 
+			if(file_exists($imgName)){
+				echo $imgName."already exists.";		
+			}else{
+				move_uploaded_file($imgTmp,$imgName);
+				echo "Download is complete";
+			}
+		}else{
+			echo "File doen't match conditions";
+		}
+	}
+        class QRGenerator{
+            
+            public $i = 1;
+            
+            function generateQR($pQR){
+           
+                $imageName = "resources/images/test".($this->i).".png";
+                //$imageName = "resources/images/test.png";
+                QRcode::png($pQR,$imageName);
+                $this->i++;
+            
+                return $imageName;
+            }
+        }
+        
+        function dispalyAddedProduct($conn, $lastId){
+      
+            $query = "select * from products where p_id=".$lastId."";      
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_array($result);
+            return $row;
+        }
 ?>
