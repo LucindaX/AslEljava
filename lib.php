@@ -18,7 +18,7 @@
 
     function createConnection() {
         $dbUser = "root"; // Add your username here 
-        $dbPass = "54889"; // Add your password here 
+        $dbPass = "hello"; // Add your password here 
         $dbHost = "localhost";
         $dbName = "phpproject";
         $con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
@@ -218,20 +218,15 @@
                 $i = 0;
                 $query = "select p_name from products where p_name='".$pName."'";
                 $result = mysqli_query($conn, $query);
-                //$row = mysqli_fetch_row($result);
+                $row = mysqli_fetch_array($result);
                 
-             if($result){
-                 header("Location: empty.php?taken=1");
+             if($row){
+                 header("Location: NewProduct.php?taken=1");
                    }
               
                 else{
-                /*for($i = 0; $i < count($row); $i++){
-                   if ((strcmp($row[i], $pName)) == 0){
-                       echo $row[$i];
-                        header("Location: http://localhost/AslEljava/notUniqueName.php?pname=$pName&pdesc=$pDesc&price=$pPrice&stock=$pStock&date=$pDate&categ=$pCateg");
-                   }
-                }*/
-                
+  
+               
 		$query = "insert into products set p_name='" . $pName . "',p_desc='" . $pDesc . "',p_price=" . $pPrice . ",p_stock=" . $pStock . ",p_AddData='" . $pDate . "',p_category=" . $pCateg . "";
 		//,p_QR='" . $pQRname . "',p_img='" . $pImage . "'
                 echo $query;
