@@ -102,20 +102,20 @@
 				<h2>Add Product :</h2>
                                 <form class="showProduct" action="addNewProduct.php" method="post" enctype="multipart/form-data">
                                     <label for="pname">Name : </label>
-                                    <input type="text" name="pname" id="pname"/><br/><br/>
+                                    <input type="text" name="pname" id="pname" required/><br/><br/>
                                    
                                     <label for="pdesc">Description : </label>
                                     <input type="text" name="pdesc" id="pdesc"/><br/><br/>  
                                    
                                     <label for="price">Price : </label>
-                                    <input type="number" name="price" id="price"/><br/><br/>
+                                    <input type="number" name="price" id="price" required min="0"/><br/><br/>
                                    
                                     <label for="stock">Stock : </label>
-                                    <input type="number" name="pstock" id="stock"/><br/><br/>
+                                    <input type="number" name="pstock" id="stock" required min="0"/><br/><br/>
                                    
                                     <label for="image">Image : </label>
                                     <!--<input type="text" name="image" id="image"/><br/>-->                                   
-                                    <input type="file" name="image" id="image" accept="image/*"/><br/><br/>
+                                    <input type="file" name="image" id="image" required accept="image/*"/><br/><br/>
                                                                       
                                     
                                     

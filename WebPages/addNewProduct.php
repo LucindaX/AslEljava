@@ -15,6 +15,9 @@
 	$imgTmp = $_FILES["image"]["tmp_name"];
 
         $exten = substr($pImage, -3);
+        if(!$pDate){
+            $pDate = Date("Y-m-d");
+        }
         
         $conn = createConnection();
 	$lastId = addNewProduct($conn, $pName, $pDesc, $pPrice, $pStock, $pDate, $pCateg);

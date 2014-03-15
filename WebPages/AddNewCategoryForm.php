@@ -98,7 +98,7 @@
 				<h2>Add New Category :</h2>
                                 <form class="showProduct" action="AddNewCategory.php" method="post" enctype="multipart/form-data">
                                     <label for="cname">Category name : </label>
-                                    <input type="text" name="cname" id="cname"/><br/><br/>                                
+                                    <input type="text" name="cname" id="cname" required/><br/><br/>                                
                                     
                                     <input class="btn" type="submit" value="Add" />
                                 </form>
