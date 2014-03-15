@@ -124,7 +124,7 @@
                                     
                                    <label for="categ">Category : </label>
                               <!--      <input type="text" name="categ" id="categ"/><br/><br/> -->
-                                   <select>
+                                   <select name="categ" id="categ">
                                        <?php while($row =mysqli_fetch_array($result)){ ?>                                    
                                        <option><?php echo $row["name"]; ?></option>
                                        <?php                                       

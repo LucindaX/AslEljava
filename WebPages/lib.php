@@ -359,19 +359,17 @@
         if ($row) {
             header("Location: NewProduct.php?taken=1");
         } else {
-            /* for($i = 0; $i < count($row); $i++){
-              if ((strcmp($row[i], $pName)) == 0){
-              echo $row[$i];
-              header("Location: notUniqueName.php?pname=$pName&pdesc=$pDesc&price=$pPrice&stock=$pStock&date=$pDate&categ=$pCateg");
-              }
-              } */
-
-            $query = "insert into products set p_name='" . $pName . "',p_desc='" . $pDesc . "',p_price=" . $pPrice . ",p_stock=" . $pStock . ",p_AddData='" . $pDate . "',p_category=" . $pCateg . "";
-            //,p_QR='" . $pQRname . "',p_img='" . $pImage . "'
+            $query = "select id from categories where name='".$pCateg."'";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_array($result); 
+            $pCategId = $row["id"]; 
+          
+            $query = "insert into products set p_name='" . $pName . "',p_desc='" . $pDesc . "',p_price=" . $pPrice . ",p_stock=" . $pStock . ",p_AddData='" . $pDate . "',p_category=" . $pCategId . "";
+            
             echo $query;
             $result = mysqli_query($conn, $query);
             if ($result) {
-                //echo "Insertion Successfull";
+                
                 $lastId = mysqli_insert_id($conn);
             } else {
                 echo "error..";
@@ -381,6 +379,8 @@
         }
         mysqli_close($conn);
     }
+    
+    
 
     function productImageUpload($imgError, $imgName, $imgType, $imgSize, $imgTmp, $lastId) {
         if ($imgError > 0) {
@@ -421,12 +421,12 @@
 
     function dispalyAddedProduct($conn, $lastId) {
 
-        $query = "select * from products where p_id=" . $lastId . "";
+        $query = "select p.*,c.name from products p left join categories c on p.p_category=c.id where p.p_id=".$lastId."";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_array($result);
         return $row;
-    }
-
+    } 
+//"select * from products where p_id=" . $lastId . "";
     // this is template .. add your implementation of your own function here :) 
     function yourFunction() {
 
