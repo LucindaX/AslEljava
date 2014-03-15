@@ -351,7 +351,7 @@
 
     function addNewProduct($conn, $pName, $pDesc, $pPrice, $pStock, $pDate, $pCateg) { //$pQRname, $pDate, $pCateg) {
         $lastId = 0;
-        $i = 0;
+        
         $query = "select p_name from products where p_name='" . $pName . "'";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_array($result);
@@ -366,7 +366,7 @@
           
             $query = "insert into products set p_name='" . $pName . "',p_desc='" . $pDesc . "',p_price=" . $pPrice . ",p_stock=" . $pStock . ",p_AddData='" . $pDate . "',p_category=" . $pCategId . "";
             
-            echo $query;
+            
             $result = mysqli_query($conn, $query);
             if ($result) {
                 
@@ -426,7 +426,7 @@
         $row = mysqli_fetch_array($result);
         return $row;
     } 
-//"select * from products where p_id=" . $lastId . "";
+
     // this is template .. add your implementation of your own function here :) 
     function yourFunction() {
 
@@ -448,7 +448,6 @@
     function showCategories($conn){
         $query = "select name from categories";
         $result = mysqli_query($conn, $query);
-        //$row = mysqli_fetch_array($result);
         
         return $result;       
     }
