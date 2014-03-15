@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/var/www/AslEljava/WebPages/insertIntoDB.php</file>
             <file>file:/var/www/AslEljava/WebPages/notUniqueName.php</file>
             <file>file:/var/www/AslEljava/WebPages/NewProduct.php</file>
@@ -21,6 +22,14 @@
             <file>file:/var/www/AslEljava/WebPages/AdminPanel.php</file>
             <file>file:/var/www/AslEljava/WebPages/deleteproduct.php</file>
             <file>file:/var/www/AslEljava/WebPages/resources/css/style.css</file>
+=======
+            <file>file:/var/www/AslEljava/WebPages/productAddAgain.php</file>
+            <file>file:/var/www/AslEljava/WebPages/addNewProduct.php</file>
+            <file>file:/var/www/AslEljava/WebPages/EditAddedProduct.php</file>
+            <file>file:/var/www/AslEljava/WebPages/selectProdToEdit.php</file>
+            <file>file:/var/www/AslEljava/WebPages/NewProduct.php</file>
+            <file>file:/var/www/AslEljava/WebPages/editproduct.php</file>
+>>>>>>> 5f8f5b6a787a3ec404a403c8282482a5dd314158
             <file>file:/var/www/AslEljava/WebPages/lib.php</file>
         </group>
     </open-files>

@@ -109,7 +109,7 @@
                                 <p class="showProduct">QR code : <img class="img2" src="<?php echo $row["p_QR"]; ?>"></img></p><br/><br/> <br/><br/>            
                                 <p class="showProduct">Date : <?php echo $row["p_AddData"]; ?> </p><br/><br/>
                                 <p class="showProduct">Category : <?php echo $row["name"]; ?> </p><br/><br/>                               
-                                <button class="btn1" type="button" onclick="location.href='http://www.example.com'">Edit</button>
+                                <button class="btn1" type="button" onclick="location.href='EditAddedProduct.php?row='.$row.'">Edit</button>
                                 <button class="btn2" type="button" onclick="location.href='NewProduct.php'">Add new product</button>
 
                                 <?php }else{
