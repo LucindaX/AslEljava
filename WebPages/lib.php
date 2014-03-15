@@ -1,6 +1,6 @@
 
     <?php
-include ('../phpqrcode/qrlib.php');
+
     require_once('WkHtmlToPdf.php');
     /*
      * Add your own function with those commands ( da 3shan lw 7ad nasa ;) )
