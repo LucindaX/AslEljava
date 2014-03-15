@@ -15,7 +15,7 @@
 
     function createConnection() {
         $dbUser = "root"; // Add your username here 
-        $dbPass = "hello"; // Add your password here 
+        $dbPass = "54889"; // Add your password here 
         $dbHost = "localhost";
         $dbName = "phpproject";
         $con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
