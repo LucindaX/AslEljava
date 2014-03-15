@@ -108,7 +108,7 @@
                                 <p class="showProduct">Image : <img class="img1" src="<?php echo $row["p_img"]; ?>"></img></p><br/><br/><br/><br/><br/><br/><br/><br/>
                                 <p class="showProduct">QR code : <img class="img2" src="<?php echo $row["p_QR"]; ?>"></img></p><br/><br/> <br/><br/>            
                                 <p class="showProduct">Date : <?php echo $row["p_AddData"]; ?> </p><br/><br/>
-                                <p class="showProduct">Category : <?php echo $row["p_category"]; ?> </p><br/><br/>                               
+                                <p class="showProduct">Category : <?php echo $row["name"]; ?> </p><br/><br/>                               
                                 <button class="btn1" type="button" onclick="location.href='http://www.example.com'">Edit</button>
                                 <button class="btn2" type="button" onclick="location.href='NewProduct.php'">Add new product</button>
 
