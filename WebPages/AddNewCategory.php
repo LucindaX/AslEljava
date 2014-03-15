@@ -1,7 +1,15 @@
+<?php
+
+include 'lib.php';
+
+$conn = createConnection();
+$result = addNewCategory($conn, $_POST["cname"]);
+if($result){ ?>
+    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
-    <?php include 'lib.php';?>
 	<title>PHP Project</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="resources/css/images/favicon.ico" />
@@ -94,47 +102,9 @@
 			<!-- Latest Products -->
 			<div class="products">
                             <div>
-                                <?php 
-                                    $conn = createConnection();
-                                    $result = showCategories($conn);
+				<h2>Category is added successfully..</h2>
+                                <a href="AddNewCategoryForm.php">Add again</a>
                                 
-                                ?>
-				<h2>Add Product :</h2>
-                                <form class="showProduct" action="addNewProduct.php" method="post" enctype="multipart/form-data">
-                                    <label for="pname">Name : </label>
-                                    <input type="text" name="pname" id="pname"/><br/><br/>
-                                   
-                                    <label for="pdesc">Description : </label>
-                                    <input type="text" name="pdesc" id="pdesc"/><br/><br/>  
-                                   
-                                    <label for="price">Price : </label>
-                                    <input type="number" name="price" id="price"/><br/><br/>
-                                   
-                                    <label for="stock">Stock : </label>
-                                    <input type="number" name="pstock" id="stock"/><br/><br/>
-                                   
-                                    <label for="image">Image : </label>
-                                    <!--<input type="text" name="image" id="image"/><br/>-->                                   
-                                    <input type="file" name="image" id="image" accept="image/*"/><br/><br/>
-                                                                      
-                                    
-                                    
-                                    <label for="date">Addition Date : </label>
-                                    <input type="date" name="date" id="date"/><br/><br/>
-                                    
-                                   <label for="categ">Category : </label>
-                              <!--      <input type="text" name="categ" id="categ"/><br/><br/> -->
-                                   <select>
-                                       <?php while($row =mysqli_fetch_array($result)){ ?>                                    
-                                       <option><?php echo $row["name"]; ?></option>
-                                       <?php                                       
-                                             }
-                                             mysqli_close($conn);
-                                        ?>
-                                   </select>
-                                    
-                                    <input class="btn" type="submit" value="Add Product" />
-                                </form>                             
                             </div>
 				<div class="cl"></div>
 			</div>
@@ -146,3 +116,8 @@
    
 </body>
 </html>
+
+
+
+<?php }
+?>

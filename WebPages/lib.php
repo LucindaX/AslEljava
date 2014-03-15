@@ -441,15 +441,16 @@
         } else {
             $query = "insert into categories set name='".$categName."'";
             $result = mysqli_query($conn, $query);
-            if ($result) {
-                $lastId = mysqli_insert_id($conn);
-            } else {
-                echo "error..";
-            }
-
-            return $lastId;
-        }
-        mysqli_close($conn);        
+            return $result;
+        }     
+    }
+    
+    function showCategories($conn){
+        $query = "select name from categories";
+        $result = mysqli_query($conn, $query);
+        //$row = mysqli_fetch_array($result);
+        
+        return $result;       
     }
 
     ?>
