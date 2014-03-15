@@ -98,29 +98,26 @@
 				<h2>Admin Panel :</h2>
 				<div class="product-holder">
 					<div class="product">
-						<a title="Details" href="#"><img src="resources/css/images/startMagazine.png" alt="Black and red stylish computer case" /></a>
-						<p>Start Magazine</p>							
+                                            <a title="Details" href="AddProduct.php"><img src="resources/css/images/magazine.png" alt="Black and red stylish computer case" style="margin-bottom: 40px; margin-top: 15px;"/></a>
+						<p style="color: white; background: url(resources/css/images/product-label-green.png) repeat-x 0 0;">Start Magazine</p>							
 					</div>
 				</div>
 				<div class="product-holder">
 					<div class="product">
-						<a title="Details" href="#"><img src="resources/css/images/newProduct.png.png" alt="Beautiful white case with flower motives" /></a>
-						<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />			
-						<p>New Product</p>													
+                                            <a title="Details" href="NewProduct.php"><img src="resources/css/images/newproduct.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>		
+						<p style="color: white; background: url(resources/css/images/product-label-blue.png) repeat-x 0 0;">New Product</p>													
 					</div>
 				</div>
 				<div class="product-holder">
 					<div class="product">
-						<a title="Details" href="#"><img src="resources/css/images/viewProducts.png" alt="Beautiful white case with flower motives" /></a>
-						<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />			
-						<p>View Products<</p>													
+						<a title="Details" href="#"><img src="resources/css/images/edit.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
+						<p style="color: white; background: url(resources/css/images/product-label-red.png) repeat-x 0 0;">Edit Products</p>													
 					</div>
 				</div>
 				<div class="product-holder">
 					<div class="product">
-						<a title="Details" href="#"><img src="resources/css/images/viewProducts.png" alt="Beautiful white case with flower motives" /></a>
-						<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />			
-						<p>Search Products</p>													
+                                            <a title="Details" href="reports.php"><img src="resources/css/images/reports.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
+						<p style="color: white; background: url(resources/css/images/product-label-grey.png) repeat-x 0 0;">Reports</p>													
 					</div>
 				</div>
 				<div class="cl"></div>

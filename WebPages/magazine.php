@@ -1,4 +1,12 @@
- 
+<!--
+   ----------------------- Under Construction ----------------
+-->
+
+<?php
+  include 'lib.php';
+  
+  userAuthentication();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
@@ -6,14 +14,13 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="resources/css/images/favicon.ico" />
 	<link rel="stylesheet" href="resources/css/style.css" type="text/css" media="all" />
-        <link rel="stylesheet" href="resources/css/pbox.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="resources/css/prettyCheckboxes.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="resources/css/redButton.css" type="text/css" media="all" />
 	<script src="resources/js/jquery-1.7.min.js" type="text/javascript"></script>
 	<script src="resources/js/jquery.jcarousel.js" type="text/javascript"></script>
 	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
 	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
-	<script src="vjs/functions.js" type="text/javascript"></script>
+	<script src="resources/js/functions.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="shell">
@@ -33,7 +40,7 @@
 			<!-- END Search -->						
 			<div class="cl"></div>
 			<!-- Logo -->
-			<h1 id="logo"><a title="Home" href="#">Mega Store</a></h1>
+			<h1 id="logo"><a title="Home" href="../index.php">Mega Store</a></h1>
 			<!-- Top Navigation -->
 			<div id="top-navigation">	
 				<ul>
@@ -88,54 +95,24 @@
 			<div class="cl"></div>
 			<!-- Latest Products -->
 			<div class="products">
-                            <div>
-				<h2>Enter Product's Data :</h2>
-<?php
-        
-        include 'lib.php';
-        
-        
-         $conn = createConnection();//1 connect to db
-         
-         $query = "select * from products where p_name ='".$_POST["name"]."'";
-
-          $result =mysqli_query($conn, $query);//3
-
-          $row = mysqli_fetch_array($result);
-           
-         drawEditLayout($row);//5 draw form to edit a product::::
-
-
-/*-----------------
-         $pname=$_POST["pname"];
-         $productList=array();
-         $count=0;
-          $query = "select * from products where p_name ='".$pname."'";
-          $result =mysqli_query($conn, $query);//3
-          while ($row = mysqli_fetch_array($result))
-            {
-              array_push($productList[$count],$row[$count]); //4 store query result in array ::::
-              $count++;
-            }
-//------------------*/
-
-          
-          
-                         
-    
-     //  don't forget to close connection :) 
-         mysqli_close($conn);  
-           
-      //   echo"insertion done";
-
-?>
-</div>
+				<h2>Admin Panel :</h2>
+				<?php
+                                    if(isset($_GET['id'])) {
+                                        $conn = createConnection();
+                                        
+                                        previewMagazine($conn , $_GET['id']);
+                                        
+                                        mysqli_close($conn);
+                                    }
+                                    else {
+                                        echo '<br></br><center><h1 style="color: lightgrey">ID parameter in URL is required</h1></center><br><br></br></br>';
+                                    }
+                                ?>
 				<div class="cl"></div>
 			</div>
 			<!-- END Latest Products -->		
 		</div>
 		<!-- END Main -->
 	</div>	
-    </body>
+</body>
 </html>
-
