@@ -95,7 +95,7 @@
         echo '<div class="products">';
         echo '<h2>Category 1 :</h2>';
         foreach ($ar1 as $item) {
-            printHtmlProduct($item, $conn);
+            printHtmlProduct($item, $conn,1);
         }
         echo '</div>';
         echo '<div class="cl"></div>';
@@ -104,7 +104,7 @@
         echo '<div class="products">';
         echo '<h2>Category 2 :</h2>';
         foreach ($ar2 as $item) {
-            printHtmlProduct($item, $conn);
+            printHtmlProduct($item, $conn,1);
         }
         echo '</div>';
         echo '<div class="cl"></div>';
@@ -113,35 +113,41 @@
         echo '<div class="products">';
         echo '<h2>Category 3 :</h2>';
         foreach ($ar3 as $item) {
-            printHtmlProduct($item, $conn);
+            printHtmlProduct($item, $conn,1);
         }
         echo '</div>';
         echo '<div class="cl"></div>';
     }
 
-    function printHtmlProduct($item, $conn) {
+    function printHtmlProduct($item, $conn, $type) {
         echo '<div class="product-holder">';
         echo '<div class="product">';
         echo '<a title="Details" href="ShowProduct.php?id=' . $item->id . '">';
         echo '<img src="' . $item->img . '" alt="Product" />';
         echo '</a>';
-        echo '<img id="' . $item->id . 'drag" name="' . $item->id . '" src="resources/css/images/drag.png" width="16px" height="16px" alt="drag and drop" ondragstart="event.dataTransfer.setData(&quot; text &quot;,this.name);"/>';
 
-        $query = "SELECT * FROM product_magazine WHERE prod_id = '" . $item->id . "'";
-        $result = mysqli_query($conn, $query);
+        if($type == 1) {
+            $query = "SELECT * FROM product_magazine WHERE prod_id = '" . $item->id . "'";
+            $result = mysqli_query($conn, $query);
 
-        if (!mysqli_num_rows($result)) {
-            echo '<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />';
+            if (!mysqli_num_rows($result)) {
+                echo '<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />';
+            }
+            echo '<img id="' . $item->id . 'drag" name="' . $item->id . '" src="resources/css/images/drag.png" width="16px" height="16px" alt="drag and drop" ondragstart="event.dataTransfer.setData(&quot; text &quot;,this.name);"/>';
+            echo '<input class="red" type="button" id="' . $item->id . '" name="' . $item->name . '" value="Add" onclick="addItem(this)"/>';
         }
 
-        echo '<input class="red" type="button" id="' . $item->id . '" name="' . $item->name . '" value="Add" onclick="addItem(this)"/>';
         echo '<p>' . $item->name . '</p>';
         echo '</div>';
-        echo '<p>Stock : ' . $item->stock . '</p>';
-        echo '<div class="price-label">';
-        echo '<strike>Discount</strike>';
-        echo '<p class="price">' . $item->price . ' L.E </p>';
-        echo '</div>';
+        
+        if($type == 1) {
+            echo '<p>Stock : ' . $item->stock . '</p>';
+            echo '<div class="price-label">';
+            echo '<strike>Discount</strike>';
+            echo '<p class="price">' . $item->price . ' L.E </p>';
+            echo '</div>';
+        }
+        
         echo '</div>';
     }
 
@@ -425,6 +431,157 @@
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_array($result);
         return $row;
+    }
+    
+    
+    // ---- REPORTS FUNCTIONS ----
+    function searchByMagazine($conn) {
+        $query = "SELECT * FROM magazine";
+        $result = mysqli_query($conn, $query);
+        
+        if(mysqli_num_rows($result)) {
+           while($row = mysqli_fetch_array($result)) {
+             echo '<div class="product-holder">';
+             echo '<div class="product">';
+             echo '<a title="Details" href="magazine.php?id='.$row[0].'"><h1 style="margin-bottom: 20px; margin-top: 15px;color: darkgrey; margin-left: 75px;">'.$row[3].'</h1></a>';			
+	     echo '<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />';
+             echo '<p style="color: white; background: url(resources/css/images/product-label-brown.png) repeat-x 0 0;">Edition : '.$row[2].'</p>';													
+	     echo '</div>';
+             echo '<p>Date : ' .$row[1]. '</p>';
+	     echo '</div>';
+           } 
+        }
+        else {
+            echo '<br></br><center><h1 style="color: lightgrey">No Products</h1></center><br><br></br></br>';
+        } 
+    }     
+    
+    
+    function searchByDiscount($conn) {
+        $query = "SELECT p_id,p_name,discount FROM products LEFT JOIN product_discount ON pro_id = p_id WHERE discount IS NOT NULL ORDER BY discount DESC;";
+        $result = mysqli_query($conn, $query);
+        
+        if(mysqli_num_rows($result)) {
+           while($row = mysqli_fetch_array($result)) {
+             echo '<div class="product-holder">';
+             echo '<div class="product">';
+             echo '<a title="Details" href="productAddAgain.php?lastId='.$row[0].'"><h1 style="margin-bottom: 20px; margin-top: 15px;color: darkgrey; margin-left: 75px;">'.$row[2].'%</h1></a>';			
+	     echo '<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />';
+             echo '<p style="color: white; background: url(resources/css/images/product-label-brown.png) repeat-x 0 0;">'.$row[1].'</p>';													
+	     echo '</div>';
+	     echo '</div>';
+           } 
+        }
+        else {
+            echo '<br></br><center><h1 style="color: lightgrey">No Products</h1></center><br><br></br></br>';
+        } 
+    }
+    
+    
+    function searchByAdding($conn) {
+        $query = "SELECT P_id,p_name,p_stock FROM products";
+        $result = mysqli_query($conn, $query);
+        
+        if (mysqli_num_rows($result)) {
+            $check = true;
+            while($row = mysqli_fetch_array($result)) {
+                $query = "SELECT * FROM product_magazine WHERE prod_id = '" .$row[0]. "'";
+                $resultMag = mysqli_query($conn, $query);
+ 
+                if (!mysqli_num_rows($resultMag)) {
+                   
+                  $check = false;
+                    
+                  echo '<div class="product-holder">';
+                  echo '<div class="product">';
+                  echo '<a title="Details" href="productAddAgain.php?lastId='.$row[0].'"><h1 style="margin-bottom: 20px; margin-top: 15px;color: darkgrey; margin-left: 45px;">'.$row[2].' in Stock</h1></a>';
+                  echo '<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />';
+                  echo '<p style="color: white; background: url(resources/css/images/product-label-brown.png) repeat-x 0 0;">'.$row[1].'</p>';													
+                  echo '</div>';
+                  echo '</div>';
+                }
+             }
+             if($check) echo '<br></br><center><h1 style="color: lightgrey">No Products</h1></center><br><br></br></br>';
+        }
+        else {
+            echo '<br></br><center><h1 style="color: lightgrey">No Products</h1></center><br><br></br></br>';
+        }  
+    }
+    
+    
+    function searchByBought($conn) {
+        $query = "SELECT p_id,p_name,p_hits FROM products ORDER BY p_hits DESC";
+        $result = mysqli_query($conn, $query);
+        
+        if(mysqli_num_rows($result)) {
+            while($row = mysqli_fetch_array($result)) {
+               echo '<div class="product-holder">';
+               echo '<div class="product">';
+               echo '<a title="Details" href="productAddAgain.php?lastId='.$row[0].'"><h1 style="margin-bottom: 20px; margin-top: 15px;color: darkgrey; margin-left: 50px;">'.$row[2].' Piece</h1></a>';
+               echo '<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />';
+               echo '<p style="color: white; background: url(resources/css/images/product-label-brown.png) repeat-x 0 0;">'.$row[1].'</p>';													
+               echo '</div>';
+               echo '</div>'; 
+            }
+        }
+        else {
+            echo '<br></br><center><h1 style="color: lightgrey">No Products</h1></center><br><br></br></br>';
+        }
+    }
+    
+    function searchByVisiting($conn) {
+        // Sara 
+    }
+    // ---- END OF REPORTS FUNCTIONS ----
+    
+    
+    // Preview All Magazine Content
+    function previewMagazine($conn , $id) {
+        $query = "SELECT * FROM magazine WHERE mag_id = ".$id;
+        $resultMag = mysqli_query($conn, $query);
+        
+        if(mysqli_num_rows($resultMag)) {
+            $rowMag = mysqli_fetch_array($resultMag);
+            
+            echo '<div style="background-color: white; border-left-color: darkgrey; border-left-style: solid; border-left-width: 13px;padding: 5px;"><h1>Title : '.$rowMag[3].'</h1>';
+            echo '<h3>Edition : '.$rowMag[2].'</h2>';
+            echo '<h3>Date : '.$rowMag[1].'</h2></div>';
+            echo '<br></br><h1>Products in magazine : </h1><br></br>';
+            
+            $query = "SELECT products.* FROM products LEFT JOIN product_magazine ON p_id = prod_id WHERE magzn_id = ".$id;
+            $result = mysqli_query($conn, $query);
+            
+            if(mysqli_num_rows($result)) {
+                require_once 'Product.php';
+                while($row = mysqli_fetch_assoc($result)) {
+                   $id = $row['p_id'];
+                    $name = $row['p_name'];
+                    $price = $row['p_price'];
+                    $img = $row['p_img'];
+                    $stock = $row['p_stock'];
+                    $addData = $row['p_AddData'];
+                    $category = $row['p_category'];
+
+                    $item = new Product();
+
+                    $item->name = $name;
+                    $item->id = $id;
+                    $item->price = $price;
+                    $item->img = $img;
+                    $item->stock = $stock;
+                    $item->addData = $addData;
+                    $item->category = $category;
+
+                   printHtmlProduct($item, $conn,2);
+                }
+            }
+            else {
+                echo '<br></br><center><h1 style="color: lightgrey">No Items in this magazine .. Or products has been removed</h1></center><br><br></br></br>';
+            }
+        }
+        else {
+            echo '<br></br><center><h1 style="color: lightgrey">Error in magazine ID</h1></center><br><br></br></br>';
+        }
     }
 
     // this is template .. add your implementation of your own function here :) 

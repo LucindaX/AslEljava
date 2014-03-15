@@ -12,9 +12,9 @@ and open the template in the editor.
     <body>
         <?php
          include 'lib.php';
-         $conn = createConnection("root","654321");//1 connect to db
+         $conn = createConnection();//1 connect to db
                      
-        $Pid=$_POST["pid"];
+         $Pid=$_POST["pid"];
          $Pname=$_POST["pname"];
          $Pdesc=$_POST["pdesc"];
          $Pprice=$_POST["pprice"];
@@ -24,7 +24,7 @@ and open the template in the editor.
          $PDate=$_POST["pdate"];
          $PCategory=$_POST["pcategory"];
 
-         $queryIns = "update products set p_name ='".$Pname."',p_desc ='".$Pdesc."',p_price =".$Pprice.",p_stock=".$Pstock.",p_img='".$Pimg."',p_QR='".$PQR."',p_AddData='".$PDate."',p_category=".$PCategory."";
+         $queryIns = "UPDATE products SET p_name ='".$Pname."',p_desc ='".$Pdesc."',p_price =".$Pprice.",p_stock=".$Pstock.",p_AddData='".$PDate."',p_category=".$PCategory." WHERE p_id =".$Pid;
 
         echo $queryIns;
 
