@@ -2,7 +2,7 @@
 $name = $_GET['pname'];
 include 'lib.php';
 
-$conn = createConnection("root", "hello");
+$conn = createConnection();
 
  $query = "select p_name from products where p_name = '".$name."'";
  $result = mysqli_query($conn, $query);
