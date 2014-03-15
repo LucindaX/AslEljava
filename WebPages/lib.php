@@ -1,6 +1,6 @@
 
     <?php
-
+include ('../phpqrcode/qrlib.php');
     require_once('WkHtmlToPdf.php');
     /*
      * Add your own function with those commands ( da 3shan lw 7ad nasa ;) )
@@ -15,7 +15,7 @@
 
     function createConnection() {
         $dbUser = "root"; // Add your username here 
-        $dbPass = "54889"; // Add your password here 
+        $dbPass = "hello"; // Add your password here 
         $dbHost = "localhost";
         $dbName = "phpproject";
         $con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
@@ -430,6 +430,26 @@
     // this is template .. add your implementation of your own function here :) 
     function yourFunction() {
 
+    }
+    
+    function addNewCategory($conn, $categName){
+        $query = "select name from categories where name='" . $categName . "'";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($result);
+        if ($row) {
+            header("Location: AddNewCategoryForm.php?taken=1");
+        } else {
+            $query = "insert into categories set name='".$categName."'";
+            $result = mysqli_query($conn, $query);
+            if ($result) {
+                $lastId = mysqli_insert_id($conn);
+            } else {
+                echo "error..";
+            }
+
+            return $lastId;
+        }
+        mysqli_close($conn);        
     }
 
     ?>
