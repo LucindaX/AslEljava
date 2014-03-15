@@ -362,7 +362,7 @@
             /* for($i = 0; $i < count($row); $i++){
               if ((strcmp($row[i], $pName)) == 0){
               echo $row[$i];
-              header("Location: http://localhost/AslEljava/notUniqueName.php?pname=$pName&pdesc=$pDesc&price=$pPrice&stock=$pStock&date=$pDate&categ=$pCateg");
+              header("Location: notUniqueName.php?pname=$pName&pdesc=$pDesc&price=$pPrice&stock=$pStock&date=$pDate&categ=$pCateg");
               }
               } */
 
@@ -405,10 +405,10 @@
     }
 
     function generateQR($lastId) {
-
-        $imageName = "resources/images/test" . $lastId . ".png";
+        include '../phpqrcode/qrlib.php';
+        $imageName = "resources/qr_images/test" . $lastId . ".png";
         QRcode::png("10.1.42.192/AslEljava/store.php?prod_id=" . $lastId, $imageName);
-        $conn = createConnection("root", "hello");
+        $conn = createConnection();
         $query = "update products set p_QR='" . $imageName . "' where p_id=" . $lastId . "";
         echo $query;
         $result = mysqli_query($conn, $query);

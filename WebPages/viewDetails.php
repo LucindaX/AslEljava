@@ -75,7 +75,7 @@
 			<div class="p_name"><strong>Product Name :</strong><?php echo $row["p_name"]; ?> </div><div class="space"></div>
 			<div class="desciption"><strong>Description :</strong><?php echo $row["p_desc"]; ?></div><div class="space"></div>
 			<div class="price"><strong>Price : </strong><?php echo $row["p_price"]; ?> L.E</div><div class="space"></div>
-			<div class="button"><img onclick="check();"src="images/buy.jpg" width=35% height=15% ></div>
+			<div class="button"><img onclick="check();"src="resources/css/images/buy.jpg" width=35% height=15% ></div>
 		</div>
 
 			<?php   	}

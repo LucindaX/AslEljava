@@ -96,7 +96,7 @@
 				<h2>Product Added :</h2>
                                
                                 <?php 
-                                $conn = createConnection("root","hello");
+                                $conn = createConnection();
                                 $lastId = $_GET["lastId"];                            
                                 $row = dispalyAddedProduct($conn, $lastId); 
                                 if($row){

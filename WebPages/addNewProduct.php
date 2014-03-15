@@ -23,9 +23,9 @@
         */
 
         $exten = substr($pImage, -3);
-        $conn = createConnection("root","hello");
+        $conn = createConnection();
 	$lastId = addNewProduct($conn, $pName, $pDesc, $pPrice, $pStock, $pDate, $pCateg);
-        $imgName = "resources/images/"."Image_".$lastId.".".$exten;
+        $imgName = "resources/pr_images/"."Image_".$lastId.".".$exten;
         productImageUpload($imgError, $imgName, $imgType, $imgSize, $imgTmp, $lastId);
 
         generateQR($lastId);
