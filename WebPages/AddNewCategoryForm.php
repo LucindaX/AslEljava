@@ -1,9 +1,13 @@
-
+<?php ob_start();
+  include 'lib.php';
+  
+  userAuthentication();
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
-	<title>PHP Project</title>
+	<title>Asl Eljava - Add New Category</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="resources/css/images/favicon.ico" />
 	<link rel="stylesheet" href="resources/css/style.css" type="text/css" media="all" />

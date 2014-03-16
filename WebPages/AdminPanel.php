@@ -1,8 +1,4 @@
-<!--
-   ----------------------- Under Construction ----------------
--->
-
-<?php
+<?php ob_start();
   include 'lib.php';
   
   userAuthentication();
@@ -100,7 +96,7 @@
 				</div>
 				<div class="product-holder">
 					<div class="product">
-						<a title="Details" href="#"><img src="resources/css/images/edit.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
+                                            <a title="Details" href="selectProdToEdit.php"><img src="resources/css/images/edit.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
 						<p style="color: white; background: url(resources/css/images/product-label-red.png) repeat-x 0 0;">Edit Products</p>													
 					</div>
 				</div>
@@ -133,6 +129,14 @@
 		</div>
 		<!-- END Main -->
 	</div>	
+    <br>
+        
+    </br>
+    <div class="footer">
+        <div class="footerContent">
+            CopyRights @ Reserved to Asl Eljava Team
+        </div><img class="imgFooter" src="resources/css/images/logo.png" />
+    </div>
     <script>
         <?php
             if(isset($_GET['msg']) && isset($_GET['type'])) {

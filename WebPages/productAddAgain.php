@@ -1,10 +1,10 @@
-
+<?php ob_start();
+  include 'lib.php';
+  
+  userAuthentication();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
-
-    
-    <?php include('lib.php'); ?>
-    
     
     <head>
 	<title>PHP Project</title>
@@ -87,6 +87,7 @@
                                
                                 <?php 
                                 $conn = createConnection();
+                                if(isset($_GET["lastId"] )) {
                                 $lastId = $_GET["lastId"];                            
                                 $row = dispalyAddedProduct($conn, $lastId); 
                                 if($row){
@@ -99,12 +100,18 @@
                                 <p class="showProduct">QR code : <img class="img2" src="<?php echo $row["p_QR"]; ?>"></img></p><br/><br/> <br/><br/>            
                                 <p class="showProduct">Date : <?php echo $row["p_AddData"]; ?> </p><br/><br/>
                                 <p class="showProduct">Category : <?php echo $row["name"]; ?> </p><br/><br/>                               
-                                <button class="btn1" type="button" onclick="location.href='EditAddedProduct.php?row='.$row.'">Edit</button>
+                                <button class="btn1" type="button" onclick="location.href='EditAddedProduct.php?pid=<?php echo $lastId; ?>'">Edit</button>
                                 <button class="btn2" type="button" onclick="location.href='NewProduct.php'">Add new product</button>
 
                                 <?php }else{
                                             echo "error in selection";
-                                }?>
+                                }
+                                
+                                }
+                                else {
+                                    header('location : ../index.php');
+                                }
+?>
                             </div>
 				<div class="cl"></div>
 			</div>
@@ -112,6 +119,11 @@
 		</div>
 		<!-- END Main -->
 	</div>	
+    <div class="footer">
+        <div class="footerContent">
+            CopyRights @ Reserved to Asl Eljava Team
+        </div><img class="imgFooter" src="resources/css/images/logo.png" />
+    </div>
 </body>
 </html>
 

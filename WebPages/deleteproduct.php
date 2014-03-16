@@ -1,4 +1,9 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php ob_start();
+  include 'lib.php';
+  
+  userAuthentication();
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
 	<title>PHP Project</title>
@@ -97,5 +102,10 @@
 		</div>
 		<!-- END Main -->
 	</div>	
+    <div class="footer">
+        <div class="footerContent">
+            CopyRights @ Reserved to Asl Eljava Team
+        </div><img class="imgFooter" src="resources/css/images/logo.png" />
+    </div>
       </body>
 </html>

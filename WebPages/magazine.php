@@ -1,8 +1,4 @@
-<!--
-   ----------------------- Under Construction ----------------
--->
-
-<?php
+<?php ob_start();
   include 'lib.php';
   
   userAuthentication();
@@ -101,5 +97,10 @@
 		</div>
 		<!-- END Main -->
 	</div>	
+    <div class="footer">
+        <div class="footerContent">
+            CopyRights @ Reserved to Asl Eljava Team
+        </div><img class="imgFooter" src="resources/css/images/logo.png" />
+    </div>
 </body>
 </html>

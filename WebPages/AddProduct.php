@@ -1,11 +1,7 @@
-<!--
------------------------ Under Construction ----------------
--->
-
 <?php ob_start();
- include 'lib.php';
- 
- userAuthentication();
+  include 'lib.php';
+  
+  userAuthentication();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
@@ -158,52 +154,15 @@
                             
                     <!-- END Products -->
 	
-			<!-- Footer  -->
-			<div id="footer">
-				<div id="footer-top"></div>
-				<div id="footer-middle">
-					<div class="col styles">
-						<h3>Styles</h3>
-						<ul>
-							<li><a title="gamer" href="#"><span class="bullet"></span>gamer</a></li>
-							<li><a title="abstract" href="#"><span class="bullet"></span>abstract</a></li>
-							<li><a title="retro" href="#"><span class="bullet"></span>retro</a></li>
-							<li><a title="hi tech" href="#"><span class="bullet"></span>hi tech</a></li>
-							<li><a title="for children" href="#"><span class="bullet"></span>for children</a></li>
-							<li><a title="for ladies" href="#"><span class="bullet"></span>for ladies</a></li>							
-						</ul>
-					</div>
-					<div class="col info">
-						<h3>Information</h3>
-						<ul>
-							<li><a title="About MEGAStore" href="#"><span class="bullet"></span>About MEGAStore</a></li>
-							<li><a title="Privacy Policy" href="#"><span class="bullet"></span>Privacy Policy</a></li>
-							<li><a title="Terms &amp; Conditions" href="#"><span class="bullet"></span>Terms &amp; Conditions</a></li>
-							<li><a title="Contact Us" href="#"><span class="bullet"></span>Contact Us</a></li>
-							<li><a title="Site Map" href="#"><span class="bullet"></span>Site Map</a></li>												
-						</ul>
-					</div>
-					<div class="col newsletter">
-						<h3>Newsletter</h3>
-						<p>NO SPAM! Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						<form action="" method="post">
-							<div class="field-holder"><input type="text" class="field" value="Enter Your Email" title="Enter Your Email" /></div>
-							<div class="cl"></div>
-							<input type="checkbox" name="check-box" value="" id="check-box" />
-							<label for="check-box">Lorem ipsum dolor sit amet, consectetur </label>
-							<input type="submit" value="submit" class="submit-button" />
-						</form>
-					</div>
-					<div class="cl"></div>
-				</div>
-				<div id="footer-bottom">
-					<p>&copy; MegaStore. Design by <a href="http://css-free-templates.com/">CSS-FREE-TEMPLATES.COM</a></p>
-				</div>
-			</div>
-			<!-- END Footer -->
+
 		</div>
 		<!-- END Main -->
 	</div>	
+    <div class="footer">
+        <div class="footerContent">
+            CopyRights @ Reserved to Asl Eljava Team
+        </div><img class="imgFooter" src="resources/css/images/logo.png" />
+    </div>
     <script>
         
         var items = [];

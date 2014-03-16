@@ -1,4 +1,4 @@
-<?php
+<?php ob_start(); userAuthentication();
 
 include 'lib.php';
 

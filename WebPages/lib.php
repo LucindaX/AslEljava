@@ -15,7 +15,7 @@
 
     function createConnection() {
         $dbUser = "root"; // Add your username here 
-     
+        $dbPass = "54889";
         $dbHost = "localhost";
         $dbName = "phpproject";
         $con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
@@ -208,7 +208,7 @@
     function drawEditLayout($prodArr) {
         echo"<html>";
         echo"<body>";
-        echo"<form  action=insertIntoDB.php  method=post>";
+        echo"<form  action='insertIntoDB.php'  method='post' enctype='multipart/form-data'>";
         // echo"Product Id :";
         echo"<INPUT NAME=pid type=hidden value=" . $prodArr[0] . " class=inputclass /> <br> <br>";
 
@@ -227,7 +227,7 @@
         echo"<INPUT TYPE=number  NAME=Pstock   value=" . $prodArr[4] . " class=inputclass /> <br> <br>"; //
 
         echo"<div class=pform><b><i>Product Image :</i></b> </div>";
-        echo"<INPUT TYPE=file NAME=pimg     value='" . $prodArr[5] . "' class=inputclass /> <br> <br>"; //done
+        echo"<INPUT TYPE=file id=pimg NAME=pimg value='" . $prodArr[5] . "' class=inputclass /> <br> <br>"; //done
 
         echo"<div class=pform><b><i>Product QR :</i></b> </div>";
         echo"<INPUT TYPE=TEXT NAME=Pqr      value='" . $prodArr[6] . "' class=inputclass /> <br> <br>";
