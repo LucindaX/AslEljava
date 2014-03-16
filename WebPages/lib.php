@@ -275,8 +275,8 @@
                 //either we include the path in the database or we add it here as defined
 
                 $magazine.= "  <div class='prod'>
-                        <div class='image'><img src='" . $row["p_img"] . "' width=200px height=150px/></div>
-                        <div class='qrcode'><img src='" . $row["p_QR"] . "' width=150px height=150px/></div>
+                        <div class='image'><img src='~/var/www/AslEljava/WebPages/" . $row["p_img"] . "' width=200px height=150px/></div>
+                        <div class='qrcode'><img src='~/var/www/AslEljava/WebPages/" . $row["p_QR"] . "' width=150px height=150px/></div>
                         <div class='description'><div class='product_name'><strong>Product Name : </strong>" . $row["p_name"] . " </div>
                                                  <div class='features'><strong>Description : </strong>" . $row["p_desc"] . "</div>
                                                  <div class='afterprice'><strong>Price : </strong>" . $row["p_price"] . "</div>
