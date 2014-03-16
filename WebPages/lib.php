@@ -214,38 +214,46 @@
 
     //---------------------------------S.S
     function drawEditLayout($prodArr) {
+        $conn = createConnection();
+        $result = showCategories($conn);
+        
         echo"<html>";
         echo"<body>";
         echo"<form  action='insertIntoDB.php'  method='post' enctype='multipart/form-data'>";
         // echo"Product Id :";
-        echo"<INPUT NAME=pid type=hidden value=" . $prodArr[0] . " class=inputclass /> <br> <br>";
+        echo"<INPUT NAME=pid type=hidden value=" . $prodArr["p_id"] . " class=inputclass /> <br> <br>";
 
 
         echo"<div class=pform><b><i>Product Name : </i></b> </div>";
-        echo"<INPUT TYPE=TEXT NAME=pname    value='" . $prodArr[1] . "' class=inputclass /> <br> <br>";
+        echo"<INPUT TYPE=TEXT NAME=pname    value='" . $prodArr["p_name"] . "' class=inputclass required  /> <br> <br>";
 
         echo" <div class=pform><b><i> Product Description :</i></b> </div>";
         // echo"<INPUT TYPE=TEXT NAME=pdesc    value=$prodArr[2]> <br> <br>";//
-        echo"<textarea rows=4 cols=50 name=pdesc class=inputclass> " . $prodArr[2] . " </textarea> <br> <br>";
+        echo"<textarea rows=4 cols=50 name=pdesc class=inputclass> " . $prodArr["p_desc"] . " </textarea> <br> <br>";
 
         echo"<div class=pform><b><i>Product Price : </i></b> </div>";
-        echo"<INPUT TYPE=number  NAME=pprice   value=" . $prodArr[3] . " class=inputclass /> <br> <br>"; //
+        echo"<INPUT TYPE=number  NAME=pprice   value=" . $prodArr["p_price"] . " class=inputclass required min=0 /> <br> <br>"; //
 
         echo"<div class=pform><b><i>Product Stock :</i></b> </div>";
-        echo"<INPUT TYPE=number  NAME=Pstock   value=" . $prodArr[4] . " class=inputclass /> <br> <br>"; //
+        echo"<INPUT TYPE=number  NAME=Pstock   value=" . $prodArr["p_stock"] . " class=inputclass required min=0 /> <br> <br>"; //
 
-        echo"<div class=pform><b><i>Product Image :</i></b> </div>";
-        echo"<INPUT TYPE=file id=pimg NAME=pimg value='" . $prodArr[5] . "' class=inputclass /> <br> <br>"; //done
-
-        echo"<div class=pform><b><i>Product QR :</i></b> </div>";
-        echo"<INPUT TYPE=TEXT NAME=Pqr      value='" . $prodArr[6] . "' class=inputclass /> <br> <br>";
+       // echo"<div class=pform><b><i>Product Image :</i></b> </div>";
+        //echo"<INPUT TYPE=file id=pimg NAME=pimg value='" . $prodArr[5] . "' class=inputclass /> <br> <br>"; //done      
 
         echo"<div class=pform><b><i>Product Date:</i></b> </div>";
-        echo"<INPUT TYPE=TEXT NAME=pdate    value= '" . $prodArr[7] . "' class=inputclass /> <br> <br>"; //
+        echo"<INPUT TYPE=date NAME=pdate    value= '" . $prodArr["p_AddData"] . "' class=inputclass /> <br> <br>"; //
 
         echo"<div class=pform><b><i>Product Category:</i></b> </div>";
-        echo"<INPUT TYPE=number  NAME=pcategory value=" . $prodArr[8] . " class=inputclass /> <br> <br>"; //
-
+        //echo"<INPUT TYPE=number  NAME=pcategory value=" . $prodArr["p_category"] . " class=inputclass /> <br> <br>"; //
+        
+        echo   " <select name=categ id=categ>";
+        while($row =mysqli_fetch_array($result)){                                    
+          echo "<option value=".$row[0].">".$row[1]."</option>";     
+             }
+            mysqli_close($conn);
+                                       
+           echo "</select>";
+        
         echo"<input type=submit name=submitbtn id=subbtn  value=Done />";
         echo"</form>";
         echo"</body>";
@@ -626,7 +634,7 @@
     }
     
     function showCategories($conn){
-        $query = "select name from categories";
+        $query = "select id,name from categories";
         $result = mysqli_query($conn, $query);
         
         return $result;       

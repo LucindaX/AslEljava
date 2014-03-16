@@ -12,7 +12,7 @@
 	<script src="resources/js/jquery.jcarousel.js" type="text/javascript"></script>
 	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
 	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
-	<script src="vjs/functions.js" type="text/javascript"></script>
+	<script src="js/functions.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="shell">
@@ -93,8 +93,13 @@
 
                            
            include 'lib.php';
-                                      selectPToEdit();//2 draw form to select product to edit it::::::
-         
+        if(isset($_GET["taken"])){
+        echo " <script> alert(\"Product Aleardy Exists\"); </script> "; 
+        }    
+                  
+        selectPToEdit();//2 draw form to select product to edit it::::::
+        
+       
                                 ?>
                             </div>
 				<div class="cl"></div>

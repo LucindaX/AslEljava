@@ -1,8 +1,4 @@
- <?php ob_start();
-  include 'lib.php';
-  
-  userAuthentication();
-?>
+ <?php  ob_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
@@ -30,20 +26,23 @@
 						<input type="text" class="field" value="Search Products" title="Keywords" />
 						<input type="submit" value="" class="submit-button" />						
 					</form>
+					<a class="advanced-search" title="Advanced Search" href="#">Advanced Search</a>
 					<div class="cl"></div>
 				</div>	
 			</div>
 			<!-- END Search -->						
 			<div class="cl"></div>
 			<!-- Logo -->
-			<h1 id="logo"><a title="Home" href="../index.php">AslELjava Stores</a></h1>
+			<h1 id="logo"><a title="Home" href="#">Mega Store</a></h1>
 			<!-- Top Navigation -->
 			<div id="top-navigation">	
 				<ul>
-                                        <li><a class="start" title="My Account" href="SignOutHandle.php"><span></span>Sign Out</a></li>
-                                        <li><a class="cart" title="shopping cart" href="../index.php"><span></span>Home</a></li>				
+					<li>0 items  $ 0,00</li>
+					<li><a class="start" title="My Account" href="#"><span></span>My Account</a></li>
+					<li><a class="cart" title="shopping cart" href="#"><span></span>shopping cart </a></li>
+					<li><a class="end" title="checkout" href="#">checkout<span></span></a></li>				
 				</ul>		
-			</div>					
+			</div>				
 			<!-- END Top Navigation -->	
 			<div class="cl"></div>		
 		</div>
@@ -51,24 +50,34 @@
 		<!-- Navigation -->
 		<div id="navigation">
 			<ul>
-				<li><a title="Home" href="../index.php">Home<span class="sep-right"></span></a></li>
+				<li><a title="Home" href="#">Home<span class="sep-right"></span></a></li>
 				<li>
-                                    <a href="AddProduct.php"><span class="sep-left"></span>Start Magazine<span class="sep-right"></span></a>
+					<a title="Games" href="#"><span class="sep-left"></span>Gamer<span class="sep-right"></span></a>
 				</li>
+				<li><a title="Abstract" href="#"><span class="sep-left"></span>abstract<span class="sep-right"></span></a></li>
 				<li>
-                                    <a title="Retro" href="reports.php"><span class="sep-left"></span>Search<span class="sep-right"></span></a>
+					<a title="Retro" href="#"><span class="sep-left"></span>Retro<span class="sep-right"></span></a>
 					<div class="dd">
 						<ul>
-							<li><a href="productReport.php?searchBy=discount"><span class="sep-left"></span>Discount % Products</a></li>
-							<li><a href="productReport.php?searchBy=magazine"><span class="sep-left"></span>Products By Magazine</a></li>
-							<li><a href="productReport.php?searchBy=bought"><span class="sep-left"></span>Products By Buys</a></li>
-                                                        <li><a href="productReport.php?searchBy=visits"><span class="sep-left"></span>Products By Visits</a></li>
-							<li><a href="productReport.php?searchBy=notAdded"><span class="sep-left"></span>Products Not Added</a></li>
+							<li><a title="Drop down menu 1" href="#"><span class="sep-left"></span>Drop down menu 1</a></li>
+							<li>
+								<a title="Drop down menu 2" href="#"><span class="sep-left"></span>Drop down menu 2</a>
+								<div class="dd">
+									<ul>
+										<li><a title="Drop down menu 1" href="#"><span class="sep-left"></span><span class="dd-first"></span>Drop down menu 1</a></li>
+										<li><a title="Drop down menu 2" href="#"><span class="sep-left"></span>Drop down menu 2</a></li>
+										<li><a title="Drop down menu 3" href="#"><span class="sep-left"></span>Drop down menu 3</a></li>										
+									</ul>
+								</div>
+							</li>
+							<li><a title="Drop down menu 3" href="#"><span class="sep-left"></span>Drop down menu 3</a></li>							
 						</ul>
 					</div>
 				</li>
-                                <li><a title="For Children" href="NewProduct.php"><span class="sep-left"></span>New Product<span class="sep-right"></span></a></li>
-                                <li><a title="HI Tech" href="selectProdToEdit.php"><span class="sep-left"></span>Edit Products<span class="sep-right"></span></a></li>		
+				<li><a title="HI Tech" href="#"><span class="sep-left"></span>HI Tech<span class="sep-right"></span></a></li>
+				<li><a title="For Children" href="#"><span class="sep-left"></span>For Children<span class="sep-right"></span></a></li>
+				<li><a title="For Ladies" href="#"><span class="sep-left"></span>For Ladies<span class="sep-right"></span></a></li>
+						
 			</ul>
 			<div class="cl"></div>
 		</div>
@@ -82,11 +91,18 @@
                             <div>
 				<h2>Enter Product's Data :</h2>
 <?php
-        
+      
         include 'lib.php';
         
         
          $conn = createConnection();//1 connect to db
+         
+         $query = "select p_name from products where p_name='".$_POST["name"]."'";
+         $result =mysqli_query($conn, $query);
+         
+        
+         
+         if(mysqli_num_rows($result)){
          
          $query = "select * from products where p_name ='".$_POST["name"]."'";
 
@@ -95,7 +111,10 @@
           $row = mysqli_fetch_array($result);
            
          drawEditLayout($row);//5 draw form to edit a product::::
-
+         
+         }else{
+              header("Location: empty.php?taken=1");
+         }
 
 /*-----------------
          $pname=$_POST["pname"];
@@ -127,11 +146,6 @@
 		</div>
 		<!-- END Main -->
 	</div>	
-    <div class="footer">
-        <div class="footerContent">
-            CopyRights @ Reserved to Asl Eljava Team
-        </div><img class="imgFooter" src="resources/css/images/logo.png" />
-    </div>
     </body>
 </html>
 
