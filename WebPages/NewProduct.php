@@ -13,6 +13,38 @@
 	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
 	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
 	<script src="vjs/functions.js" type="text/javascript"></script>
+
+	<style>
+
+	label{
+	display:inline-block;
+	float:left;
+	width:150px;
+	clear:both;
+	}
+	
+	input{
+	display:inline-block;
+	float:left;
+	
+	}
+	
+	textarea{
+	display:inline-block;
+	float:left;
+	}
+
+	select{
+	display:inline-block;
+	float:left;
+	}
+
+	
+
+	</style>
+
+
+
 </head>
     
     <?php
@@ -105,8 +137,8 @@
                                     <input type="text" name="pname" id="pname" required/><br/><br/>
                                    
                                     <label for="pdesc">Description : </label>
-                                    <input type="text" name="pdesc" id="pdesc"/><br/><br/>  
-                                   
+                                    <textarea rows="4" cols="40" name="pdesc" id="pdesc"></textarea><br/><br/>  
+                                   <br><br>
                                     <label for="price">Price : </label>
                                     <input type="number" name="price" id="price" required min="0"/><br/><br/>
                                    
@@ -132,9 +164,10 @@
                                              mysqli_close($conn);
                                         ?>
                                    </select>
-                                    
-                                    <input class="btn" type="submit" value="Add Product" />
-                                </form>                             
+                                    <br><br>
+                                    <input class="red" type="submit" value="Add Product" style="display:block; clear:both" />
+                                </form>  
+				<br><br>                           
                             </div>
 				<div class="cl"></div>
 			</div>
