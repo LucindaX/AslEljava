@@ -32,25 +32,21 @@
     // Security check for admin
     function userAuthentication() {
         session_start();
-        if (!isset($_SESSION["userName"])) {
+        if (!isset($_SESSION["username"])) {
             header('Location: SignIn.php');
         }
     }
 
     // Print All products to add to magazine
     function printAllProducts($conn) {
-        $query = "SELECT * FROM products";
+        $query = "SELECT products.*,name FROM products,categories WHERE p_category = id ORDER BY name";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result)) {
 
-            $i1 = 0;
-            $i2 = 0;
-            $i3 = 0;
-
-            $cat1 = array();
-            $cat2 = array();
-            $cat3 = array();
+            $categoryArr = array();
+            $new = array();
+            $i = 0;
 
             include 'Product.php';
             while ($row = mysqli_fetch_assoc($result)) {
@@ -60,7 +56,7 @@
                 $img = $row['p_img'];
                 $stock = $row['p_stock'];
                 $addData = $row['p_AddData'];
-                $category = $row['p_category'];
+                $category = $row['name'];
 
                 $item = new Product();
 
@@ -71,48 +67,40 @@
                 $item->stock = $stock;
                 $item->addData = $addData;
                 $item->category = $category;
-
-                if ($category == 1) {
-                    $cat1[$i1] = $item;
-                    $i1++;
-                } else if ($category == 2) {
-                    $cat2[$i2] = $item;
-                    $i2++;
-                } else if ($category == 3) {
-                    $cat3[$i3] = $item;
-                    $i3++;
+                
+                
+                if($i == 0) {
+                    array_push($new,$item);
+                    $i = 1;
                 }
+                else {
+                   if($item->category != $new[sizeof($new)-1]->category) {
+                        array_push($categoryArr,$new);
+                        $new = array();
+                        array_push($new,$item);
+                    }
+                    else {
+                        array_push($new,$item);
+                    } 
+                }       
             }
-            printProducts($cat1, $cat2, $cat3, $conn);
+            array_push($categoryArr,$new);
+            
+            foreach ($categoryArr as $value) {
+                printCategoryProducts($value,$conn);
+            }
+
         } else {
             echo '<center><h1 style="color:lightgrey"> No Products </h1></center>';
         }
     }
 
-    function printProducts($ar1, $ar2, $ar3, $conn) {
+    function printCategoryProducts($cat, $conn) {
 
         echo '<div class="cl"></div>';
         echo '<div class="products">';
-        echo '<h2>Category 1 :</h2>';
-        foreach ($ar1 as $item) {
-            printHtmlProduct($item, $conn,1);
-        }
-        echo '</div>';
-        echo '<div class="cl"></div>';
-
-        echo '<div class="cl"></div>';
-        echo '<div class="products">';
-        echo '<h2>Category 2 :</h2>';
-        foreach ($ar2 as $item) {
-            printHtmlProduct($item, $conn,1);
-        }
-        echo '</div>';
-        echo '<div class="cl"></div>';
-
-        echo '<div class="cl"></div>';
-        echo '<div class="products">';
-        echo '<h2>Category 3 :</h2>';
-        foreach ($ar3 as $item) {
+        echo '<h2>'.$cat[0]->category.' :</h2>';
+        foreach ($cat as $item) {
             printHtmlProduct($item, $conn,1);
         }
         echo '</div>';
@@ -397,7 +385,7 @@
             } else {
                 move_uploaded_file($imgTmp, $imgName);
                 echo "Download is complete";
-                $conn = createConnection("root", "hello");
+                $conn = createConnection();
                 $query = "update products set p_img='" . $imgName . "' where p_id=" . $lastId . "";
                 //echo $query;
                 $result = mysqli_query($conn, $query);
@@ -606,6 +594,25 @@
         
         return $result;       
     }
+    
+    
+    function  printForm($type) {
+        echo '<div class="magazineTitles">';
+        if($type == 1) {
+            $action = 'Sign In';
+        }
+        else {
+            $action = 'Sign Up';
+        }
+        echo '<h1> '.$action.' :</h1><br></br>';
+        echo '<font >Username : </font><br/>';
+        echo '<input type="text" placeholder="Enter Username" id="username" name="username" /><br></br>';
+        echo '<font>Password :</font><br/>';
+        echo '<input type="password" placeholder="Enter Password" " id="password" name="password" /><br></br>';
+        echo '</div>';
+        echo '<center><input type="button" id="submitBtn" class="red" value="'.$action.'" style="font-size: 18px" onclick="validate()" /> </center><br></br>';
+    }
+    
     
     
     // this is template .. add your implementation of your own function here :) 

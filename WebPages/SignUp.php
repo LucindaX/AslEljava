@@ -1,11 +1,11 @@
-<?php ob_start();
+<?php   ob_start(); 
 include 'lib.php';
 session_start();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
     <head>
-        <title>Add Product</title>
+        <title>Asl Eljava _ SignUp</title>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <link rel="shortcut icon" href="resources/css/images/favicon.ico" />
         <link rel="stylesheet" href="resources/css/style.css" type="text/css" media="all" />
@@ -94,10 +94,15 @@ session_start();
             <div id="main">
                 <div id="signIn">
                     <?php
-                    if (isset($_SESSION['username'])) {
-                        header('location: AdminPanel.php');
+                    if (isset($_SESSION['type'])) {
+                        if($_SESSION['type'] == '1') {
+                            printForm(2);
+                        }
+                        else {
+                            header('location: ../index.php');
+                        }
                     } else {
-                        printForm(1);
+                        header('location: ../index.php');
                     }
                     ?>
                 </div>
@@ -156,11 +161,12 @@ session_start();
 
             function validate() {
                 if (!document.getElementById("username").value.trim() || !document.getElementById("password").value.trim()) {
+                    
                     document.getElementById('errorMessage').style.display = "block";
-                    document.getElementById('errorMessage').innerHTML = 'All Data are Required !';
+                    document.getElementById('errorMessage').innerHTML = 'All Data Are Required';
                     
                     setInterval(function(){document.getElementById('errorMessage').style.display = "none";},3500);
-                            
+
                 }
                 else {
                     document.getElementById("submitBtn").style.display = 'none';
@@ -172,23 +178,21 @@ session_start();
 
                     xhr.onload = function() {
                         if (this.responseText.trim() === 'done') {
-                            window.location = "AdminPanel.php";
+                            window.location = "AdminPanel.php?msg=User has been Signed Up&type=yes";
                         }
                         else {
                             document.getElementById('errorMessage').style.display = "block";
                             document.getElementById('errorMessage').innerHTML = this.responseText;
                     
                             setInterval(function(){document.getElementById('errorMessage').style.display = "none";},3500);
-                            
                             document.getElementById("submitBtn").style.display = 'block';
                             buttonDiv.style.display = 'none';
                         }
                     }
-                    xhr.open("post", "SignInHandle.php", true);
+                    xhr.open("post", "SignUpHandle.php", true);
                     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     xhr.send("username=" + document.getElementById("username").value + "&password=" + document.getElementById("password").value);
                 }
             }
         </script>
     </body>
-</html>
