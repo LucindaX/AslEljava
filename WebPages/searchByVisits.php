@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
-	<title>Asl Eljava - Products Reports</title>
+	<title>PHP Project</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" href="resources/css/images/favicon.ico" />
 	<link rel="stylesheet" href="resources/css/style.css" type="text/css" media="all" />
@@ -16,7 +16,24 @@
 	<script src="resources/js/jquery.jcarousel.js" type="text/javascript"></script>
 	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
 	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
-	<script src="resources/js/functions.js" type="text/javascript"></script>
+	<script src="js/functions.js" type="text/javascript"></script>
+
+	<style>
+
+	label{
+	display:inline-block;
+	float:left;
+	width:150px;
+	clear:both;
+	}
+	
+	input{
+	display:inline-block;
+	float:left;
+	
+	}
+
+	</style>
 </head>
 <body>
 	<div class="shell">
@@ -47,7 +64,7 @@
 			<div class="cl"></div>		
 		</div>
 		<!-- END Header -->
-                <!-- Navigation -->
+		<!-- Navigation -->
 		<div id="navigation">
 			<ul>
 				<li><a title="Home" href="../index.php">Home<span class="sep-right"></span></a></li>
@@ -61,7 +78,7 @@
 							<li><a href="productReport.php?searchBy=discount"><span class="sep-left"></span>Discount % Products</a></li>
 							<li><a href="productReport.php?searchBy=magazine"><span class="sep-left"></span>Products By Magazine</a></li>
 							<li><a href="productReport.php?searchBy=bought"><span class="sep-left"></span>Products By Buys</a></li>
-                                                        <li><a href="searchByVisits.php"><span class="sep-left"></span>Products By Visits</a></li>
+                                                        <li><a href="productReport.php?searchBy=visits"><span class="sep-left"></span>Products By Visits</a></li>
 							<li><a href="productReport.php?searchBy=notAdded"><span class="sep-left"></span>Products Not Added</a></li>
 						</ul>
 					</div>
@@ -72,42 +89,38 @@
 			<div class="cl"></div>
 		</div>
 		<!-- END Navigation -->
+                
+            <div id="successMessage" class="successMessage"></div>
+            <div id="errorMessage" class="errorMessage"></div>
+                
 		<!-- Main  -->
 		<div id="main">
 			
 			<div class="cl"></div>
 			<!-- Latest Products -->
 			<div class="products">
-				<h2>Products Reports :</h2>
-				<?php
-                                    if(isset($_GET['searchBy'])) {
+                            <div>
+				<h2>Search By Visits :</h2>
+                                    <label for="pname">Name : </label>
+                                    <input type="text" name="pname" id="pname" placeholder="Enter Product Name" required/><br/><br/>                       
+                                    
+                                    <label for="sdate">Start Date : </label>
+                                    <input type="date" name="sdate" id="sdate" required/><br/><br/>
+                                    
+                                    <label for="edate">End Date : </label>
+                                    <input type="date" name="edate" id="edate" required/><br/><br/>
+
+                                    <br><br>
+                                            <input class="red" type="submit" value="Add Product" style="display:block; clear:both" onclick="validate()"/>
+
+				<br><br>  
                                         
-                                        $conn = createConnection();
                                         
-                                        $type = $_GET['searchBy'];
-                                        
-                                        if($type == 'magazine'){
-                                            searchByMagazine($conn);
-                                        }
-                                        else if($type == 'discount') {
-                                            searchByDiscount($conn);
-                                        }
-                                        else if($type == 'notAdded') {
-                                            searchByAdding($conn);
-                                        }
-                                        else if($type == 'bought') {
-                                            searchByBought($conn);
-                                        }
-                                        else {
-                                            echo '<br></br><center><h1 style="color: lightgrey">Id is not implemented</h1></center><br><br></br></br>';
-                                        }
-                                        
-                                        mysqli_close($conn);
-                                    }
-                                    else {
-                                        echo '<br></br><center><h1 style="color: lightgrey">searchBy in url paramaeter has not been setting</h1></center><br><br></br></br>';
-                                    }
-                                ?>
+                                        <div id="viewDiv" >
+                                            
+                                        </div>
+                                        <br><br></br></br>
+                            </div>
 				<div class="cl"></div>
 			</div>
 			<!-- END Latest Products -->		
@@ -119,5 +132,40 @@
             CopyRights @ Reserved to Asl Eljava Team
         </div><img class="imgFooter" src="resources/css/images/logo.png" />
     </div>
+    <script>
+        function validate() {
+            var pName = document.getElementById('pname').value;
+            var sDate = document.getElementById('sdate').value;
+            var eDate = document.getElementById('edate').value; 
+            
+            var viewDiv = document.getElementById('viewDiv'); 
+            
+            if(pName.trim() && sDate && eDate) {
+                if(sDate < eDate) {
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.onload = function() {
+                         viewDiv.innerHTML =  this.responseText;
+                    }
+                    xhr.open("post", "searchByVisitHandle.php", true);
+                    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhr.send("pName=" + pName + "&sDate=" + sDate + "&eDate="+eDate);
+                
+                }
+                else {
+                    document.getElementById('errorMessage').style.display = "block";
+                    document.getElementById('errorMessage').innerHTML = 'End Date must be greater than Start Date';
+
+                    setInterval(function(){document.getElementById('errorMessage').style.display = "none";},3500);
+                }
+            }
+            else {
+                document.getElementById('errorMessage').style.display = "block";
+                document.getElementById('errorMessage').innerHTML = 'All Date are required';
+
+                setInterval(function(){document.getElementById('errorMessage').style.display = "none";},3500);
+            }
+        }
+    </script>
 </body>
 </html>

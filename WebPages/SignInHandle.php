@@ -19,6 +19,11 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
 
         $_SESSION['username'] = $username;
         $_SESSION['type'] = $type['type'];
+        
+        $expire=time()+60*60*24;
+        setcookie("username", $username, $expire);
+        setcookie("type", $type['type'], $expire);
+        
         echo 'done';
     }
     mysqli_close($conn);

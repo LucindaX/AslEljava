@@ -88,7 +88,7 @@
             } else
                 echo "<h1> Sorry An error Occured Please try again Later</h1>";
 
-            $sql = "update products set p_visits=p_visits+1 where p_id=" . $id;
+            $sql = "insert into product_visits values(".$id.",NOW())";
             ?>
 
         </div>

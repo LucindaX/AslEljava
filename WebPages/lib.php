@@ -33,7 +33,15 @@
     function userAuthentication() {
         session_start();
         if (!isset($_SESSION["username"])) {
-            header('Location: SignIn.php');
+            
+            if(isset($_COOKIE["username"])) {
+                $_SESSION['username'] = $_COOKIE['username'];
+                $_SESSION['type'] = $_COOKIE['type'];
+            }
+            else {
+                header('Location: SignIn.php');
+            }
+
         }
     }
 
@@ -401,7 +409,7 @@
     function generateQR($lastId) {
         include '../phpqrcode/qrlib.php';
         $imageName = "resources/qr_images/test" . $lastId . ".png";
-        QRcode::png("10.1.42.192/AslEljava/store.php?prod_id=" . $lastId, $imageName);
+        QRcode::png("10.1.42.192/AslEljava/viewDetails.php?prod_id=" . $lastId, $imageName);
         $conn = createConnection();
         $query = "update products set p_QR='" . $imageName . "' where p_id=" . $lastId . "";
         echo $query;
@@ -519,8 +527,37 @@
         }
     }
     
-    function searchByVisiting($conn) {
-        // under conustruction
+    function searchByVisiting($conn,$pname,$startDate,$endDate) {
+        
+        $query = "SELECT p_id FROM products WHERE p_name = '".$pname."'";
+        $result = mysqli_query($conn, $query);
+        
+        if(mysqli_num_rows($result)) {
+            $row = mysqli_fetch_array($result);
+            $pid = $row[0];
+            
+            $query = "SELECT COUNT(pr_id) FROM product_visits WHERE pr_id = ".$pid." AND v_date >= ".$startDate." AND v_date <= ".$endDate;
+            $result = mysqli_query($conn, $query);
+
+            if(mysqli_num_rows($result)) {
+                $row = mysqli_fetch_array($result);
+
+               echo '<div class="product-holder" style="margin-left: 316px">';
+               echo '<div class="product">';
+               echo '<a title="Details" href="productAddAgain.php?lastId='.$pid.'"><h1 style="margin-bottom: 20px; margin-top: 15px;color: darkgrey; margin-left: 50px;">'.$row[0].' visits</h1></a>';
+               echo '<img class="sale-label" src="resources/css/images/sale-label.png" alt="Sale!" />';
+               echo '<p style="color: white; background: url(resources/css/images/product-label-brown.png) repeat-x 0 0;">'.$pname.'</p>';													
+               echo '</div>';
+               echo '</div>';          
+            }
+            else {
+                echo '<br></br><center><h1 style="color: lightgrey">No Visits :)</h1></center><br><br></br></br>';
+            }
+        }
+        else {
+            echo '<br></br><center><h1 style="color: lightgrey">Product Name is Not Found</h1></center><br><br></br></br>';
+        }
+        
     }
     // ---- END OF REPORTS FUNCTIONS ----
     
