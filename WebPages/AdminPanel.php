@@ -33,21 +33,18 @@
 						<input type="text" class="field" value="Search Products" title="Keywords" />
 						<input type="submit" value="" class="submit-button" />						
 					</form>
-					<a class="advanced-search" title="Advanced Search" href="#">Advanced Search</a>
 					<div class="cl"></div>
 				</div>	
 			</div>
 			<!-- END Search -->						
 			<div class="cl"></div>
 			<!-- Logo -->
-			<h1 id="logo"><a title="Home" href="#">Mega Store</a></h1>
+			<h1 id="logo"><a title="Home" href="../index.php">AslELjava Stores</a></h1>
 			<!-- Top Navigation -->
 			<div id="top-navigation">	
 				<ul>
-					<li>0 items  $ 0,00</li>
-					<li><a class="start" title="My Account" href="#"><span></span>My Account</a></li>
-					<li><a class="cart" title="shopping cart" href="#"><span></span>shopping cart </a></li>
-					<li><a class="end" title="checkout" href="#">checkout<span></span></a></li>				
+                                        <li><a class="start" title="My Account" href="SignOutHandle.php"><span></span>Sign Out</a></li>
+                                        <li><a class="cart" title="shopping cart" href="../index.php"><span></span>Home</a></li>				
 				</ul>		
 			</div>				
 			<!-- END Top Navigation -->	
@@ -59,11 +56,11 @@
 			<ul>
 				<li><a title="Home" href="#">Home<span class="sep-right"></span></a></li>
 				<li>
-					<a title="Games" href="#"><span class="sep-left"></span>Gamer<span class="sep-right"></span></a>
+                                    <a title="Games" href="AddProduct.php"><span class="sep-left"></span>Start Magazine<span class="sep-right"></span></a>
 				</li>
-				<li><a title="Abstract" href="#"><span class="sep-left"></span>abstract<span class="sep-right"></span></a></li>
+                                <li><a title="Abstract" href="NewProduct.php"><span class="sep-left"></span>New Product<span class="sep-right"></span></a></li>
 				<li>
-					<a title="Retro" href="#"><span class="sep-left"></span>Retro<span class="sep-right"></span></a>
+					<a title="Retro" href="#"><span class="sep-left"></span>Search<span class="sep-right"></span></a>
 					<div class="dd">
 						<ul>
 							<li><a title="Drop down menu 1" href="#"><span class="sep-left"></span>Drop down menu 1</a></li>
@@ -83,7 +80,6 @@
 				</li>
 				<li><a title="HI Tech" href="#"><span class="sep-left"></span>HI Tech<span class="sep-right"></span></a></li>
 				<li><a title="For Children" href="#"><span class="sep-left"></span>For Children<span class="sep-right"></span></a></li>
-				<li><a title="For Ladies" href="#"><span class="sep-left"></span>For Ladies<span class="sep-right"></span></a></li>
 						
 			</ul>
 			<div class="cl"></div>
@@ -93,6 +89,9 @@
 		<div id="main">
 			
 			<div class="cl"></div>
+                        
+                        <div id="successMessage" class="successMessage">dasdasda</div>
+                        <div id="errorMessage" class="errorMessage">dasdasda</div>
 			<!-- Latest Products -->
 			<div class="products">
 				<h2>Admin Panel :</h2>
@@ -120,11 +119,50 @@
 						<p style="color: white; background: url(resources/css/images/product-label-grey.png) repeat-x 0 0;">Reports</p>													
 					</div>
 				</div>
+                                <?php
+                                    if(isset($_SESSION['type'])) {
+                                        if($_SESSION['type'] == '1') {
+                                ?>
+                                
+                                <div class="product-holder">
+					<div class="product">
+                                            <a title="Details" href="SignUp.php"><img src="resources/css/images/reports.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
+						<p style="color: white; background: url(resources/css/images/product-label-grey.png) repeat-x 0 0;">New System admin</p>													
+					</div>
+                                    <p>Super Root Only Allowed</p>
+				</div>
+                                
+                                <?php
+                                        }
+                                    }
+                                ?>
 				<div class="cl"></div>
 			</div>
 			<!-- END Latest Products -->		
 		</div>
 		<!-- END Main -->
 	</div>	
+    <script>
+        <?php
+            if(isset($_GET['msg']) && isset($_GET['type'])) {
+                if($_GET['type'] == 'yes') {
+        ?>
+                    document.getElementById('successMessage').style.display = "block";
+                    document.getElementById('successMessage').innerHTML = '<?php echo $_GET['msg']; ?>';
+                    
+                    setInterval(function(){document.getElementById('successMessage').style.display = "none";},3500);
+        <?php
+                }
+                else if($_GET['type'] == 'no'){
+         ?>
+                    document.getElementById('errorMessage').style.display = "block";
+                    document.getElementById('errorMessage').innerHTML = '<?php echo $_GET['msg'];?>';
+                    
+                    setInterval(function(){document.getElementById('errorMessage').style.display = "none";},3500);
+        <?php
+                }
+            }
+        ?>
+    </script>
 </body>
 </html>

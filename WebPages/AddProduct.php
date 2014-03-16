@@ -127,10 +127,8 @@
                       if($page == 3) {
                           if(isset($_GET['id'])) {
                     ?>
-                    '<div class="magazineTitles">';
-                        <center>  <h1 style=""><font color="green"> Congratulation </font> .. You have successfully published Magazine :</h1><br></br></center>
-      
-                    </div>';
+
+                    <div id="successMessage" class="successMessage" style="display: block">Congratulation .. You have successfully published Magazine :</div><br></br>
                     <center><input type="button" class="red" value="Download Magazine as PDF" style="font-size: 18px" onclick="window.location = <?php echo $_GET['id'];?>+'.pdf' "/> &nbsp;&nbsp;&nbsp;
                            <input type="button" class="red" value="Preview Magazine in browser" style="font-size: 18px" onclick="window.location = <?php echo $_GET['id'];?>+'.pdf' "/> </center><br></br>
 
@@ -153,7 +151,7 @@
                           }
                           printMagazineInfo();  
                     ?>
-                            <center><input type="submit" class="red" value="Continue" style="font-size: 18px" /> </center><br></br>
+                            <center><input type="submit" class="red" value="Publilsh" style="font-size: 18px" /> </center><br></br>
                           </form>
                     <?php
                       }

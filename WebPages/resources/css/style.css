@@ -208,3 +208,16 @@ a.buy-now:hover { text-decoration: none; }
 .magazineTitles input { width: 360px; height: 34px; border-style: solid; border-color: lightgrey; border-width: 1px;}
 .magazineTitles h1 { border-left-color: darkgrey; border-left-style: solid; border-left-width: 20px; background-color: white; padding: 6px;  position: absolute; left: 180px; }
 .magazineTitles h1 font {  font-size: 20px }
+
+.successMessage {background-position: 8px 8px;
+background-repeat: no-repeat;
+border: 1px solid;
+margin: 6px 0;
+padding: 10px 10px 10px 50px;border-color: #be7;background-image: url(images/message_ok.png);background-color: #f8fff0;color: #234600;display: none;}
+   
+
+.errorMessage {background-position: 8px 8px;
+background-repeat: no-repeat;
+border: 1px solid;
+margin: 6px 0;
+padding: 10px 10px 10px 50px;border-color: #F6ADAD;background-image: url(images/message_error.png);background-color: #FFF0F2;color: #830C0C;display: none;}
