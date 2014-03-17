@@ -8,7 +8,7 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
 
     $conn = createConnection();
 
-    $query = "SELECT * FROM users WHERE username = '".$username."' AND password = md5(".$password.")";
+    $query = "SELECT * FROM users WHERE username = '".$username."' AND password = md5('".$password."')";
     $result = mysqli_query($conn, $query);
 
     if(!mysqli_num_rows($result)) {

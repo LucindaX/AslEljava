@@ -12,7 +12,7 @@
 	<script src="resources/js/jquery.jcarousel.js" type="text/javascript"></script>
 	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
 	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
-	<script src="js/functions.js" type="text/javascript"></script>
+        <script src="resources/js/functions.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="shell">

@@ -217,18 +217,16 @@
         $conn = createConnection();
         $result = showCategories($conn);
         
-        echo"<html>";
-        echo"<body>";
         echo"<form  action='insertIntoDB.php'  method='post' enctype='multipart/form-data'>";
-        // echo"Product Id :";
-        echo"<INPUT NAME=pid type=hidden value=" . $prodArr["p_id"] . " class=inputclass /> <br> <br>";
+
+        echo"<INPUT NAME=pid id=pid type=hidden value=" . $prodArr["p_id"] . " class=inputclass /> <br> <br>";
 
 
         echo"<div class=pform><b><i>Product Name : </i></b> </div>";
         echo"<INPUT TYPE=TEXT NAME=pname    value='" . $prodArr["p_name"] . "' class=inputclass required  /> <br> <br>";
 
         echo" <div class=pform><b><i> Product Description :</i></b> </div>";
-        // echo"<INPUT TYPE=TEXT NAME=pdesc    value=$prodArr[2]> <br> <br>";//
+
         echo"<textarea rows=4 cols=50 name=pdesc class=inputclass> " . $prodArr["p_desc"] . " </textarea> <br> <br>";
 
         echo"<div class=pform><b><i>Product Price : </i></b> </div>";
@@ -237,15 +235,11 @@
         echo"<div class=pform><b><i>Product Stock :</i></b> </div>";
         echo"<INPUT TYPE=number  NAME=Pstock   value=" . $prodArr["p_stock"] . " class=inputclass required min=0 /> <br> <br>"; //
 
-       // echo"<div class=pform><b><i>Product Image :</i></b> </div>";
-        //echo"<INPUT TYPE=file id=pimg NAME=pimg value='" . $prodArr[5] . "' class=inputclass /> <br> <br>"; //done      
-
         echo"<div class=pform><b><i>Product Date:</i></b> </div>";
         echo"<INPUT TYPE=date NAME=pdate    value= '" . $prodArr["p_AddData"] . "' class=inputclass /> <br> <br>"; //
 
         echo"<div class=pform><b><i>Product Category:</i></b> </div>";
-        //echo"<INPUT TYPE=number  NAME=pcategory value=" . $prodArr["p_category"] . " class=inputclass /> <br> <br>"; //
-        
+
         echo   " <select name=categ id=categ>";
         while($row =mysqli_fetch_array($result)){                                    
           echo "<option value=".$row[0].">".$row[1]."</option>";     
@@ -254,10 +248,9 @@
                                        
            echo "</select>";
         
-        echo"<input type=submit name=submitbtn id=subbtn  value=Done />";
+        echo"<input class='red' type='submit' name='submitbtn' id='subbtn'  value='Done' />";
+        echo"<input class='red' type='button' name='deletebtn' id='deletebtn' value='Delete' onclick='deleteItem()' />";
         echo"</form>";
-        echo"</body>";
-        echo"</html>";
     }
 
     //i have included the WkHtmlToPdf class with my commit
@@ -659,6 +652,17 @@
     }
     
     
+    function deleteProduct($conn,$id) {
+        $query = "DELETE FROM products WHERE p_id = ".$id;
+        $result = mysqli_query($conn, $query);
+        
+        if($result) {
+            echo 'Product Has been deleted Successfuly';
+        }
+        else {
+            echo 'Product is Not Exist !';
+        }
+    }
     
     // this is template .. add your implementation of your own function here :) 
     function yourFunction() {

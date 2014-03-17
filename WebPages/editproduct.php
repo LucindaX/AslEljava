@@ -9,11 +9,7 @@
         <link rel="stylesheet" href="resources/css/pbox.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="resources/css/prettyCheckboxes.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="resources/css/redButton.css" type="text/css" media="all" />
-	<script src="resources/js/jquery-1.7.min.js" type="text/javascript"></script>
-	<script src="resources/js/jquery.jcarousel.js" type="text/javascript"></script>
-	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
-	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
-	<script src="vjs/functions.js" type="text/javascript"></script>
+
 </head>
 <body>
 	<div class="shell">
@@ -82,13 +78,17 @@
 			<div class="cl"></div>
 		</div>
 		<!-- END Navigation -->
+                
+                        <div id="successMessage" class="successMessage"></div>
+            <div id="errorMessage" class="errorMessage"></div>
+                
 		<!-- Main  -->
 		<div id="main">
 			
 			<div class="cl"></div>
 			<!-- Latest Products -->
 			<div class="products">
-                            <div>
+                           
 				<h2>Enter Product's Data :</h2>
 <?php
       
@@ -116,20 +116,6 @@
               header("Location: empty.php?taken=1");
          }
 
-/*-----------------
-         $pname=$_POST["pname"];
-         $productList=array();
-         $count=0;
-          $query = "select * from products where p_name ='".$pname."'";
-          $result =mysqli_query($conn, $query);//3
-          while ($row = mysqli_fetch_array($result))
-            {
-              array_push($productList[$count],$row[$count]); //4 store query result in array ::::
-              $count++;
-            }
-//------------------*/
-
-          
           
                          
     
@@ -139,13 +125,33 @@
       //   echo"insertion done";
 
 ?>
-</div>
+
 				<div class="cl"></div>
 			</div>
 			<!-- END Latest Products -->		
 		</div>
 		<!-- END Main -->
 	</div>	
+    <script>
+        function deleteItem() {
+            if (confirm('Are you sure of deleting this item ?')) {
+                var xhr = new XMLHttpRequest();
+                
+                xhr.onload = function () {
+                    document.getElementById('successMessage').style.display = "block";
+                    document.getElementById('successMessage').innerHTML = this.responseText;
+
+                    setTimeout(function(){document.getElementById('successMessage').style.display = "none";
+                                            window.location = 'empty.php'},3500);
+                }
+                
+              xhr.open("post", "DeleteProductHandle.php", true);
+              xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhr.send("pid=" + document.getElementById("pid").value);
+
+           } 
+        }
+    </script>
     </body>
 </html>
 

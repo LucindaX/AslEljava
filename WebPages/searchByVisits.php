@@ -16,7 +16,29 @@
 	<script src="resources/js/jquery.jcarousel.js" type="text/javascript"></script>
 	<script src="resources/js/prettyCheckboxes.js" type="text/javascript"></script>
 	<script src="resources/js/DD_belatedPNG-min.js" type="text/javascript"></script>
-	<script src="resources/js/functions.js" type="text/javascript"></script>
+	<script src="js/functions.js" type="text/javascript"></script>
+
+	<style>
+
+	label{
+	display:inline-block;
+	float:left;
+	width:150px;
+	clear:both;
+	}
+	
+	.searchHolder{
+	display:inline-block;
+	float:left;
+	width: 200px;
+        height: 25px;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 4px;
+        border-color: darkgrey;
+	}
+
+	</style>
 </head>
 <body>
 	<div class="shell">
@@ -72,92 +94,83 @@
 			<div class="cl"></div>
 		</div>
 		<!-- END Navigation -->
+                
+            <div id="successMessage" class="successMessage"></div>
+            <div id="errorMessage" class="errorMessage"></div>
+                
 		<!-- Main  -->
 		<div id="main">
 			
 			<div class="cl"></div>
-                        
-                        <div id="successMessage" class="successMessage">dasdasda</div>
-                        <div id="errorMessage" class="errorMessage">dasdasda</div>
 			<!-- Latest Products -->
 			<div class="products">
-				<h2>Admin Panel :</h2>
-				<div class="product-holder">
-					<div class="product">
-                                            <a title="Details" href="AddProduct.php"><img src="resources/css/images/magazine.png" alt="Black and red stylish computer case" style="margin-bottom: 40px; margin-top: 15px;"/></a>
-						<p style="color: white; background: url(resources/css/images/product-label-green.png) repeat-x 0 0;">Start Magazine</p>							
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-                                            <a title="Details" href="NewProduct.php"><img src="resources/css/images/newproduct.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>		
-						<p style="color: white; background: url(resources/css/images/product-label-blue.png) repeat-x 0 0;">New Product</p>													
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-                                            <a title="Details" href="selectProdToEdit.php"><img src="resources/css/images/edit.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
-						<p style="color: white; background: url(resources/css/images/product-label-red.png) repeat-x 0 0;">Edit Products</p>													
-					</div>
-				</div>
-				<div class="product-holder">
-					<div class="product">
-                                            <a title="Details" href="reports.php"><img src="resources/css/images/reports.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
-						<p style="color: white; background: url(resources/css/images/product-label-grey.png) repeat-x 0 0;">Reports</p>													
-					</div>
-				</div>
-                                <?php
-                                    if(isset($_SESSION['type'])) {
-                                        if($_SESSION['type'] == '1') {
-                                ?>
-                                
-                                <div class="product-holder">
-					<div class="product">
-                                            <a title="Details" href="SignUp.php"><img src="resources/css/images/reports.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
-						<p style="color: white; background: url(resources/css/images/product-label-grey.png) repeat-x 0 0;">New System admin</p>													
-					</div>
-                                    <p>Super Root Only Allowed</p>
-				</div>
-                                
-                                <?php
-                                        }
-                                    }
-                                ?>
+                            <div>
+				<h2>Search By Visits :</h2>
+                                    <label for="pname">Name : </label>
+                                    <input type="text" class="searchHolder" name="pname" id="pname" placeholder="Enter Product Name" required/><br/><br/>                       
+                                    
+                                    <label for="sdate">Start Date : </label>
+                                    <input type="date" class="searchHolder"name="sdate" id="sdate" required/><br/><br/>
+                                    
+                                    <label for="edate">End Date : </label>
+                                    <input type="date" class="searchHolder"name="edate" id="edate" required/><br/><br/>
+
+                                    <br><br>
+                                            <input class="red" type="submit" value="Search" style="display:block; clear:both" onclick="validate()"/>
+
+				<br><br>  
+                                        
+                                        
+                                        <div id="viewDiv" >
+                                            
+                                        </div>
+                                        <br><br></br></br>
+                            </div>
 				<div class="cl"></div>
 			</div>
 			<!-- END Latest Products -->		
 		</div>
 		<!-- END Main -->
 	</div>	
-    <br>
-        
-    </br>
     <div class="footer">
         <div class="footerContent">
             CopyRights @ Reserved to Asl Eljava Team
         </div><img class="imgFooter" src="resources/css/images/logo.png" />
     </div>
     <script>
-        <?php
-            if(isset($_GET['msg']) && isset($_GET['type'])) {
-                if($_GET['type'] == 'yes') {
-        ?>
-                    document.getElementById('successMessage').style.display = "block";
-                    document.getElementById('successMessage').innerHTML = '<?php echo $_GET['msg']; ?>';
-                    
-                    setTimeout(function(){document.getElementById('successMessage').style.display = "none";},3500);
-        <?php
+        function validate() {
+            var pName = document.getElementById('pname').value;
+            var sDate = document.getElementById('sdate').value;
+            var eDate = document.getElementById('edate').value; 
+            
+            var viewDiv = document.getElementById('viewDiv'); 
+            
+            if(pName.trim() && sDate && eDate) {
+                if(sDate < eDate) {
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.onload = function() {
+                         viewDiv.innerHTML =  this.responseText;
+                    }
+                    xhr.open("post", "searchByVisitHandle.php", true);
+                    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhr.send("pName=" + pName + "&sDate=" + sDate + "&eDate="+eDate);
+                
                 }
-                else if($_GET['type'] == 'no'){
-         ?>
+                else {
                     document.getElementById('errorMessage').style.display = "block";
-                    document.getElementById('errorMessage').innerHTML = '<?php echo $_GET['msg'];?>';
-                    
+                    document.getElementById('errorMessage').innerHTML = 'End Date must be greater than Start Date';
+
                     setTimeout(function(){document.getElementById('errorMessage').style.display = "none";},3500);
-        <?php
                 }
             }
-        ?>
+            else {
+                document.getElementById('errorMessage').style.display = "block";
+                document.getElementById('errorMessage').innerHTML = 'All Date are required';
+
+                setTimeout(function(){document.getElementById('errorMessage').style.display = "none";},3500);
+            }
+        }
     </script>
 </body>
 </html>

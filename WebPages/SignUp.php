@@ -152,7 +152,7 @@ userAuthentication();
                     document.getElementById('errorMessage').style.display = "block";
                     document.getElementById('errorMessage').innerHTML = 'All Data Are Required';
                     
-                    setInterval(function(){document.getElementById('errorMessage').style.display = "none";},3500);
+                    setTimeout(function(){document.getElementById('errorMessage').style.display = "none";},3500);
 
                 }
                 else {
@@ -171,7 +171,7 @@ userAuthentication();
                             document.getElementById('errorMessage').style.display = "block";
                             document.getElementById('errorMessage').innerHTML = this.responseText;
                     
-                            setInterval(function(){document.getElementById('errorMessage').style.display = "none";},3500);
+                            setTimeout(function(){document.getElementById('errorMessage').style.display = "none";},3500);
                             document.getElementById("submitBtn").style.display = 'block';
                             buttonDiv.style.display = 'none';
                         }

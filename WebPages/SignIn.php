@@ -26,7 +26,7 @@ include 'lib.php';
 			<div id="search">
 				<div class="search-holder">
 					<form action="" method="post">					
-						<input type="text" class="field" value="Search Products" title="Keywords" />
+						<input type="text" class="field" placeholder="Search Products" />
 						<input type="submit" value="" class="submit-button" />						
 					</form>
 					<div class="cl"></div>
@@ -36,14 +36,7 @@ include 'lib.php';
 			<div class="cl"></div>
 			<!-- Logo -->
 			<h1 id="logo"><a title="Home" href="../index.php">AslELjava Stores</a></h1>
-			<!-- Top Navigation -->
-			<div id="top-navigation">	
-				<ul>
-                                        <li><a class="start" title="My Account" href="SignOutHandle.php"><span></span>Sign Out</a></li>
-                                        <li><a class="cart" title="shopping cart" href="../index.php"><span></span>Home</a></li>				
-				</ul>		
-			</div>					
-			<!-- END Top Navigation -->	
+
 			<div class="cl"></div>		
 		</div>
 		<!-- END Header -->
@@ -110,7 +103,7 @@ include 'lib.php';
                     document.getElementById('errorMessage').style.display = "block";
                     document.getElementById('errorMessage').innerHTML = 'All Data are Required !';
                     
-                    setInterval(function(){document.getElementById('errorMessage').style.display = "none";},3500);
+                    setTimeout(function(){document.getElementById('errorMessage').style.display = "none";},3500);
                             
                 }
                 else {
@@ -129,7 +122,7 @@ include 'lib.php';
                             document.getElementById('errorMessage').style.display = "block";
                             document.getElementById('errorMessage').innerHTML = this.responseText;
                     
-                            setInterval(function(){document.getElementById('errorMessage').style.display = "none";},3500);
+                            setTimeout(function(){document.getElementById('errorMessage').style.display = "none";},3500);
                             
                             document.getElementById("submitBtn").style.display = 'block';
                             buttonDiv.style.display = 'none';

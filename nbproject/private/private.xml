@@ -3,35 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/AslEljava/WebPages/AddNewCategory.php</file>
-            <file>file:/var/www/AslEljava/WebPages/searchByVisitHandle.php</file>
-            <file>file:/var/www/AslEljava/WebPages/NewProduct.php</file>
-            <file>file:/var/www/AslEljava/WebPages/resources/js/spin.min.js</file>
-            <file>file:/var/www/AslEljava/WebPages/store.php</file>
-            <file>file:/var/www/AslEljava/WebPages/productAddAgain.php</file>
-            <file>file:/var/www/AslEljava/WebPages/Publish.php</file>
-            <file>file:/var/www/AslEljava/WebPages/reports.php</file>
-            <file>file:/var/www/AslEljava/WebPages/addNewProduct.php</file>
-            <file>file:/var/www/AslEljava/WebPages/viewDetails.php</file>
-            <file>file:/var/www/AslEljava/WebPages/lib.php</file>
-            <file>file:/var/www/AslEljava/WebPages/SignInHandle.php</file>
-            <file>file:/var/www/AslEljava/WebPages/AddNewCategoryForm.php</file>
-            <file>file:/var/www/AslEljava/WebPages/insertIntoDB.php</file>
-            <file>file:/var/www/AslEljava/WebPages/empty.php</file>
-            <file>file:/var/www/AslEljava/WebPages/notUniqueName.php</file>
             <file>file:/var/www/AslEljava/WebPages/SignIn.php</file>
-            <file>file:/var/www/AslEljava/WebPages/resources/css/redButton.css</file>
-            <file>file:/var/www/AslEljava/WebPages/selectProdToEdit.php</file>
-            <file>file:/var/www/AslEljava/WebPages/AddProduct.php</file>
-            <file>file:/var/www/AslEljava/WebPages/productReport.php</file>
-            <file>file:/var/www/AslEljava/index.php</file>
-            <file>file:/var/www/AslEljava/WebPages/magazine.php</file>
+            <file>file:/var/www/AslEljava/WebPages/empty.php</file>
+            <file>file:/var/www/AslEljava/WebPages/searchByVisitHandle.php</file>
+            <file>file:/var/www/AslEljava/WebPages/searchByVisits.php</file>
             <file>file:/var/www/AslEljava/WebPages/editproduct.php</file>
-            <file>file:/var/www/AslEljava/WebPages/SignOutHandle.php</file>
-            <file>file:/var/www/AslEljava/WebPages/AdminPanel.php</file>
-            <file>file:/var/www/AslEljava/WebPages/deleteproduct.php</file>
-            <file>file:/var/www/AslEljava/WebPages/SignUp.php</file>
-            <file>file:/var/www/AslEljava/WebPages/resources/css/style.css</file>
+            <file>file:/var/www/AslEljava/WebPages/SignInHandle.php</file>
         </group>
     </open-files>
 </project-private>
