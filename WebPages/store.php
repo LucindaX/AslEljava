@@ -5,7 +5,7 @@
 
         $con = createConnection();
 
-        if (isset($_SERVER["REMOTE_ADDR"])) {
+     /*   if (isset($_SERVER["REMOTE_ADDR"])) {
 
             $ip = $_SERVER["REMOTE_ADDR"];
 
@@ -18,7 +18,7 @@
             if (mysqli_errno($con))
                 echo mysqli_errno($con) . ": " . mysqli_error($con);
         }
-
+*/
         if (isset($_GET["prod_id"])) {
 
             $prod_id = $_GET["prod_id"];

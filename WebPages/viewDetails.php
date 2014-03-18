@@ -89,6 +89,7 @@
                 echo "<h1> Sorry An error Occured Please try again Later</h1>";
 
             $sql = "insert into product_visits values(".$id.",NOW())";
+            $result = mysqli_query($con, $sql);
             ?>
 
         </div>

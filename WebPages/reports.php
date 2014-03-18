@@ -61,13 +61,13 @@
 							<li><a href="productReport.php?searchBy=discount"><span class="sep-left"></span>Discount % Products</a></li>
 							<li><a href="productReport.php?searchBy=magazine"><span class="sep-left"></span>Products By Magazine</a></li>
 							<li><a href="productReport.php?searchBy=bought"><span class="sep-left"></span>Products By Buys</a></li>
-                                                        <li><a href="productReport.php?searchBy=visits"><span class="sep-left"></span>Products By Visits</a></li>
+                                                        <li><a href="searchByVisits.php"><span class="sep-left"></span>Products By Visits</a></li>
 							<li><a href="productReport.php?searchBy=notAdded"><span class="sep-left"></span>Products Not Added</a></li>
 						</ul>
 					</div>
 				</li>
                                 <li><a title="For Children" href="NewProduct.php"><span class="sep-left"></span>New Product<span class="sep-right"></span></a></li>
-                                <li><a title="HI Tech" href="selectProdToEdit.php"><span class="sep-left"></span>Edit Products<span class="sep-right"></span></a></li>		
+                                <li><a title="HI Tech" href="searchProduct.php"><span class="sep-left"></span>Edit Products<span class="sep-right"></span></a></li>		
 			</ul>
 			<div class="cl"></div>
 		</div>
@@ -99,7 +99,7 @@
 				</div>
 				<div class="product-holder">
 					<div class="product">
-                                            <a title="Details" href="productReport.php?searchBy=visits"><img src="resources/css/images/visits.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
+                                            <a title="Details" href="searchByVisits.php"><img src="resources/css/images/visits.png" alt="Beautiful white case with flower motives" style="margin-bottom: 40px; margin-top: 15px;"/></a>			
 						<p style="color: white; background: url(resources/css/images/product-label-brown.png) repeat-x 0 0;">Products By Visits</p>													
 					</div>
 				</div>

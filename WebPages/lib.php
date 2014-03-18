@@ -118,7 +118,7 @@
     function printHtmlProduct($item, $conn, $type) {
         echo '<div class="product-holder">';
         echo '<div class="product">';
-        echo '<a title="Details" href="ShowProduct.php?id=' . $item->id . '">';
+        echo '<a title="Details" href="productAddAgain.php?lastId=' . $item->id . '">';
         echo '<img src="' . $item->img . '" alt="Product" />';
         echo '</a>';
 
@@ -139,7 +139,6 @@
         if($type == 1) {
             echo '<p>Stock : ' . $item->stock . '</p>';
             echo '<div class="price-label">';
-            echo '<strike>Discount</strike>';
             echo '<p class="price">' . $item->price . ' L.E </p>';
             echo '</div>';
         }
@@ -201,15 +200,21 @@
 
     //----------------------------------S.S
     function selectPToEdit() {
-        echo"<html>";
-        echo"<body>";
         echo"<form  action=editproduct.php method=post>";
         echo"<div class=pform><b><i> Enter Product Name: </i></b> </div>";
-        echo"<INPUT TYPE=TEXT NAME=name class=inputclass /> <br> <br>";
-        echo"<input  id=subbtn type=submit name=submitbtn value=EditProduct />";
+        echo"<INPUT TYPE=TEXT class='searchHolder' NAME=name class=inputclass /> <br> <br>";
+        echo"<input  class='red' id=subbtn type=submit name=submitbtn value=Search />";
         echo"</form>";
-        echo"</body>";
-        echo"</html>";
+    }
+    
+     //----------------------------------S.S
+    function selectPToDiscount() {
+        echo "<form  action=discountAdd.php method=post>";
+        echo "<div class=pform><b><i> Choose Product Discount: </i></b> </div>";
+        echo "Product Name : <INPUT TYPE=TEXT class='searchHolder' NAME=name class=inputclass /> <br> <br>";
+        echo "Discount : <INPUT TYPE=number class='searchHolder' NAME=discount class=inputclass min = 1 max = 100/> <br> <br>";
+        echo "<input  class='red' id=subbtn type=submit name=submitbtn value=AddDiscount />";
+        echo "</form>";
     }
 
     //---------------------------------S.S
@@ -219,37 +224,39 @@
         
         echo"<form  action='insertIntoDB.php'  method='post' enctype='multipart/form-data'>";
 
-        echo"<INPUT NAME=pid id=pid type=hidden value=" . $prodArr["p_id"] . " class=inputclass /> <br> <br>";
+        echo"<INPUT class='searchHolder' NAME=pid id=pid type=hidden value=" . $prodArr["p_id"] . " class=inputclass />";
 
 
         echo"<div class=pform><b><i>Product Name : </i></b> </div>";
-        echo"<INPUT TYPE=TEXT NAME=pname    value='" . $prodArr["p_name"] . "' class=inputclass required  /> <br> <br>";
+        echo"<INPUT class='searchHolder' TYPE=TEXT NAME=pname    value='" . $prodArr["p_name"] . "' class=inputclass required  /> <br> <br>";
 
         echo" <div class=pform><b><i> Product Description :</i></b> </div>";
 
-        echo"<textarea rows=4 cols=50 name=pdesc class=inputclass> " . $prodArr["p_desc"] . " </textarea> <br> <br>";
+        echo"<textarea class='searchHolder' rows=4 cols=50 name=pdesc style='height: 39px;' class=inputclass> " . $prodArr["p_desc"] . " </textarea> <br> <br>";
 
         echo"<div class=pform><b><i>Product Price : </i></b> </div>";
-        echo"<INPUT TYPE=number  NAME=pprice   value=" . $prodArr["p_price"] . " class=inputclass required min=0 /> <br> <br>"; //
+        echo"<INPUT TYPE=number  class='searchHolder' NAME=pprice   value=" . $prodArr["p_price"] . " class=inputclass required min=0 /> <br> <br>"; //
 
         echo"<div class=pform><b><i>Product Stock :</i></b> </div>";
-        echo"<INPUT TYPE=number  NAME=Pstock   value=" . $prodArr["p_stock"] . " class=inputclass required min=0 /> <br> <br>"; //
+        echo"<INPUT TYPE=number  class='searchHolder' NAME=Pstock   value=" . $prodArr["p_stock"] . " class=inputclass required min=0 /> <br> <br>"; //
 
         echo"<div class=pform><b><i>Product Date:</i></b> </div>";
-        echo"<INPUT TYPE=date NAME=pdate    value= '" . $prodArr["p_AddData"] . "' class=inputclass /> <br> <br>"; //
+        echo"<INPUT TYPE=date class='searchHolder' NAME=pdate    value= '" . $prodArr["p_AddData"] . "' class=inputclass /> <br> <br>"; //
 
         echo"<div class=pform><b><i>Product Category:</i></b> </div>";
 
-        echo   " <select name=categ id=categ>";
+        echo   " <select class='searchHolder' name=categ id=categ>";
         while($row =mysqli_fetch_array($result)){                                    
           echo "<option value=".$row[0].">".$row[1]."</option>";     
              }
             mysqli_close($conn);
                                        
-           echo "</select>";
+           echo "</select><br><br></br></br>";
         
-        echo"<input class='red' type='submit' name='submitbtn' id='subbtn'  value='Done' />";
+        echo"<input class='red' type='submit' name='submitbtn' id='subbtn'  value='Save' />";
         echo"<input class='red' type='button' name='deletebtn' id='deletebtn' value='Delete' onclick='deleteItem()' />";
+        echo"<input class='red' type='button' name='cancelbtn' id='cancelbtn' value='Cancel'  onclick='backEdit();'/>";
+
         echo"</form>";
     }
 
@@ -279,16 +286,22 @@
             $prod_count = 0;
             while ($row = mysqli_fetch_array($result)) {
 
-
+                if($row["discounts"] > 0){
+                    $after=$row["p_price"];
+                    $then=$after * $row["discounts"]/100;
+                    $all=$after-$then;
+                  $dis="<div class='afterprice'><strong>Price : </strong> <strike>".$row["p_price"]."</strike>&nbsp&nbsp".$all."</div>";  
+                }
+                else $dis="<div class='afterprice'><strong>Price : </strong>" . $row["p_price"] . "</div>";
                 //images should be included with their absolute path for the to appear correctly in the pdf
                 //either we include the path in the database or we add it here as defined
 
                 $magazine.= "  <div class='prod'>
-                        <div class='image'><img src='~/var/www/AslEljava/WebPages/" . $row["p_img"] . "' width=200px height=150px/></div>
-                        <div class='qrcode'><img src='~/var/www/AslEljava/WebPages/" . $row["p_QR"] . "' width=150px height=150px/></div>
+                        <div class='image'><img src='/var/www/AslEljava/WebPages/" . $row["p_img"] . "' width=200px height=150px/></div>
+                        <div class='qrcode'><img src='/var/www/AslEljava/WebPages/" . $row["p_QR"] . "' width=150px height=150px/></div>
                         <div class='description'><div class='product_name'><strong>Product Name : </strong>" . $row["p_name"] . " </div>
                                                  <div class='features'><strong>Description : </strong>" . $row["p_desc"] . "</div>
-                                                 <div class='afterprice'><strong>Price : </strong>" . $row["p_price"] . "</div>
+                                                 ".$dis."
                         </div>
                         </div>
 
@@ -410,7 +423,7 @@
     function generateQR($lastId) {
         include '../phpqrcode/qrlib.php';
         $imageName = "resources/qr_images/test" . $lastId . ".png";
-        QRcode::png("10.1.42.192/AslEljava/viewDetails.php?prod_id=" . $lastId, $imageName);
+        QRcode::png("10.1.42.192/AslEljava/WebPages/viewDetails.php?prod_id=" . $lastId, $imageName);
         $conn = createConnection();
         $query = "update products set p_QR='" . $imageName . "' where p_id=" . $lastId . "";
         echo $query;
@@ -457,7 +470,7 @@
     
     
     function searchByDiscount($conn) {
-        $query = "SELECT p_id,p_name,discount FROM products LEFT JOIN product_discount ON pro_id = p_id WHERE discount IS NOT NULL ORDER BY discount DESC;";
+        $query = "SELECT p_id,p_name,discounts FROM products WHERE discounts > 0 ORDER BY discounts DESC;";
         $result = mysqli_query($conn, $query);
         
         if(mysqli_num_rows($result)) {
@@ -537,9 +550,9 @@
             $row = mysqli_fetch_array($result);
             $pid = $row[0];
             
-            $query = "SELECT COUNT(pr_id) FROM product_visits WHERE pr_id = ".$pid." AND v_date >= ".$startDate." AND v_date <= ".$endDate;
+            $query = "SELECT COUNT(pr_id) FROM product_visits WHERE pr_id = ".$pid." AND v_date >= '".$startDate."' AND v_date <= '".$endDate."'";
             $result = mysqli_query($conn, $query);
-
+             
             if(mysqli_num_rows($result)) {
                 $row = mysqli_fetch_array($result);
 
